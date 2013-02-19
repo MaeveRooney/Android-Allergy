@@ -11,7 +11,7 @@ $createUserTable="CREATE TABLE users (id int(6) NOT NULL auto_increment,username
 mysql_query($createUserTable);
 
 $createRestaurantTable="CREATE TABLE restaurants (id int(6) NOT NULL auto_increment,name varchar(30) NOT NULL,
-	address tinytext UNIQUE,phone varchar(20) UNIQUE,restaurantEmail varchar(30) UNIQUE,GPSLongitude int(10),GPSLatitude int(10),
+	address text UNIQUE,phone varchar(20) UNIQUE,restaurantEmail varchar(30) UNIQUE,GPSLongitude int(10),GPSLatitude int(10),
 	wheatRating float(2,1),wheatNumVotes int(6),glutenRating float(2,1),glutenNumVotes int(6),dairyRating float(2,1),
 	dairyNumVotes int(6),nutRating float(2,1),nutNumVotes int(6),overallRating float(2,1),numReviews int(6), PRIMARY KEY (id))";
 mysql_query($createRestaurantTable);
