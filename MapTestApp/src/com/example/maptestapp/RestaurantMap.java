@@ -3,6 +3,7 @@ package com.example.maptestapp;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.R;
 import android.os.Bundle;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;

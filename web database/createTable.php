@@ -11,10 +11,13 @@ $createUserTable="CREATE TABLE users (id int(6) NOT NULL auto_increment,username
 mysql_query($createUserTable);
 
 $createRestaurantTable="CREATE TABLE restaurants (id int(6) NOT NULL auto_increment,name varchar(30) NOT NULL,
-	address text UNIQUE,phone varchar(20) UNIQUE,restaurantEmail varchar(30) UNIQUE,GPSLongitude int(10),GPSLatitude int(10),
-	wheatRating float(2,1),wheatNumVotes int(6),glutenRating float(2,1),glutenNumVotes int(6),dairyRating float(2,1),
-	dairyNumVotes int(6),nutRating float(2,1),nutNumVotes int(6),overallRating float(2,1),numReviews int(6), PRIMARY KEY (id))";
+	address text,phone varchar(20),restaurantEmail varchar(30),GPSLatitude int(10),GPSLongitude int(10),
+	wheatRating decimal(2,1),wheatNumVotes int(6),glutenRating decimal(2,1),glutenNumVotes int(6),dairyRating decimal(2,1),
+	dairyNumVotes int(6),nutRating decimal(2,1),nutNumVotes int(6),overallRating decimal(2,1),overallNumVotes int(6), PRIMARY KEY (id))";
 mysql_query($createRestaurantTable);
+
+$alterRestaurantTable="alter table restaurants add unique index(name, GPSLongitude, GPSLatitude)";
+mysql_query($alterRestaurantTable);
 
 $createReviewTable="CREATE TABLE reviews (id int(6) NOT NULL auto_increment,authorID int(6) NOT NULL,
 	restaurantID int(6),date datetime,reviewText text,wheatRating int(1),glutenRating int(1),
@@ -22,9 +25,14 @@ $createReviewTable="CREATE TABLE reviews (id int(6) NOT NULL auto_increment,auth
 	FOREIGN KEY (restaurantID) REFERENCES restaurants(id))";
 mysql_query($createReviewTable);
 
+$alterReviewTable="alter table reviews add unique index(authorID, restaurantID)";
+mysql_query($alterReviewTable);
+
 $createFavouritesTable="CREATE TABLE favourites (restaurantID int(6), userID int(6), FOREIGN KEY (restaurantID) REFERENCES restaurants(id),
 	FOREIGN KEY (userID) REFERENCES users(id), PRIMARY KEY (restaurantID, userID))";
 mysql_query($createFavouritesTable);
+
+echo "tables created";
 
 mysql_close();
 ?>
