@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/maptablayout" 
+    android:orientation="vertical"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+	    
+	<com.google.android.maps.MapView
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/mapview"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_above="@+id/LinearLayout02"
+	    android:apiKey="0CdGiQJmpw-rd7JnNP_3Tu24f1uSjHSMIsS8Edg"
+	    android:clickable="true" />
+
+	<LinearLayout 
+	    android:id="@+id/LinearLayout02" 
+	    android:layout_height="wrap_content" 
+	    android:layout_width="fill_parent"
+	    android:layout_alignParentBottom="true">
+	    	<Button 
+	    	    android:id="@+id/back_button" 
+		        android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight=".25" 
+		        android:text="@string/back_button"
+		        android:onClick="onClick">
+		    </Button>
+	    	<Button 
+	    	    android:id="@+id/menu_button" 
+		        android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight=".25" 
+		        android:text="@string/home_button"
+		        android:onClick="onClick">
+		    </Button>
+		    <Button 
+		        android:id="@+id/map_button" 
+		        android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight=".25" 
+		        android:text="@string/map_view"
+		        android:onClick="onClick">
+		    </Button>
+		    <Button 
+		        android:id="@+id/list_button" 
+		        android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight=".25"
+		        android:text="@string/list_view"
+		        android:onClick="onClick">
+	     	</Button>
+	</LinearLayout>
+</RelativeLayout>

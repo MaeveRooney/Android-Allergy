@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+   
+    <TextView
+        android:id="@+id/restaurant_name" 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/restaurant_name"  
+        android:padding="6dip"/>
+
+	<LinearLayout
+	    android:id="@+id/LinearLayout01" 
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent">
+	    
+	    <TextView
+	        android:id="@+id/restaurant_address"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:text="@string/restaurant_address"
+	        android:textSize="12sp"
+	        android:padding="6dip" />
+	    
+	    <ImageView
+            android:id="@+id/restaurant_image"
+            android:layout_width="match_parent"
+            android:layout_height="70sp"
+            android:layout_weight="1"
+            android:contentDescription="@string/restaurant_image"
+            android:gravity="center"
+            android:src="@drawable/ic_launcher" />
+	</LinearLayout>
+        
+	<LinearLayout
+	    android:id="@+id/LinearLayout02" 
+    	android:layout_height="wrap_content" 
+    	android:layout_width="fill_parent">
+        <TextView
+            android:id="@+id/restaurant_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp" 
+            android:text="@string/restaurant_email"
+            android:padding="6dip" />
+ 
+        <TextView
+            android:id="@+id/restaurant_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12sp" 
+            android:text="@string/restaurant_phone" 
+            android:padding="6dip"/>
+	</LinearLayout>
+	
+	<View android:id="@+id/separator1" 
+		 android:background="#ffffff" 
+		 android:layout_width = "fill_parent"
+		 android:layout_height="2dip"/>
+	
+	<TextView
+            android:id="@+id/review_header" 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@string/review_header"  
+            android:padding="6dip"/>
+	
+	<View android:id="@+id/separator2" 
+		 android:background="#ffffff" 
+		 android:layout_width = "fill_parent"
+		 android:layout_height="1dip"/>
+
+	<ListView
+	    android:id="@id/android:list"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dip"
+	    android:layout_weight="5.12"
+	    android:drawSelectorOnTop="false" >
+	</ListView>
+
+	<LinearLayout 
+    android:id="@+id/LinearLayout03" 
+    android:layout_height="wrap_content" 
+    android:layout_width="fill_parent">
+    	<Button 
+    	    android:id="@+id/back_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/back_button"
+	        android:onClick="onClick">
+	    </Button>
+    	<Button 
+    	    android:id="@+id/menu_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/home_button"
+	        android:onClick="onClick">
+	    </Button>
+	    <Button 
+	        android:id="@+id/map_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/map_view"
+	        android:onClick="onClick">
+	    </Button>
+	    <Button 
+	        android:id="@+id/list_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25"
+	        android:text="@string/list_view"
+	        android:onClick="onClick">
+	     </Button>
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/map_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/map_button" />
+
+    <Button
+        android:id="@+id/list_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/list_button" />
+    <Button
+        android:id="@+id/account_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/account_button" />
+
+</LinearLayout>

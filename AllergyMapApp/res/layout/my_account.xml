@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+ 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="448dp"
+        android:orientation="vertical"
+        android:padding="10dip" >
+        <!--  View Title Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:text="MY ACCOUNT"
+            android:textSize="25dip"
+            android:textStyle="bold" />
+        
+        
+        <!--  Name Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Username" />
+        
+        <LinearLayout 
+		    android:layout_height="wrap_content" 
+		    android:layout_width="fill_parent">
+
+		        <TextView
+		            android:id="@+id/registerName"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="3"
+		            android:textSize="20dip" />
+
+		        <Button 
+			        android:id="@+id/name_button" 
+			        android:layout_width="wrap_content" 
+			        android:layout_height="wrap_content"
+			        android:layout_weight="1"
+			        android:text="Change"
+			        android:onClick="changeUsername">
+			     </Button>
+		 </LinearLayout> 
+        <!--  Email Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Email Address" />
+        <!--  Email TextField -->
+        <LinearLayout
+		    android:layout_height="wrap_content" 
+		    android:layout_width="fill_parent">
+	        <TextView
+	            android:id="@+id/registerEmail"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20dip"
+	            android:layout_weight="3" />
+	        <Button 
+		        android:id="@+id/email_button" 
+		        android:layout_width="wrap_content" 
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:text="Change"
+		        android:onClick="changeEmail">
+		     </Button>
+		</LinearLayout>
+		
+        <Button 
+	        android:id="@+id/password_button" 
+            android:layout_marginTop="20dip"
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content"
+	        android:text="Change Password"
+	        android:onClick="changePassword">
+	     </Button>
+		
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:orientation="horizontal" >
+
+	        <CheckBox
+	            android:id="@+id/wheatCheck"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Wheat Allergy" 
+	            android:layout_weight="1"
+	            android:onClick="onCheckboxClicked"/>
+	
+	        <CheckBox
+	            android:id="@+id/glutenCheck"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Gluten Allergy" 
+	            android:layout_weight="1"
+	            android:onClick="onCheckboxClicked"/>
+	        
+	     </LinearLayout>
+	     
+	     <LinearLayout
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content"
+	         android:orientation="horizontal" >
+        
+	        <CheckBox
+	            android:id="@+id/dairyCheck"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Dairy Allergy" 
+	            android:layout_weight="1"
+	            android:onClick="onCheckboxClicked"/>
+	
+	        <CheckBox
+	            android:id="@+id/nutCheck"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Nut Allergy" 
+	            android:layout_weight="1"
+	            android:onClick="onCheckboxClicked"/>
+	        
+        </LinearLayout>
+
+        <!--  Login Button -->
+        
+        <Button
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Save Changes"
+            android:onClick="saveChanges" />
+ 
+    </LinearLayout>
+    </ScrollView>
+    
+    <LinearLayout 
+    android:id="@+id/LinearLayout03" 
+    android:layout_height="wrap_content" 
+    android:layout_width="fill_parent"
+    android:layout_alignParentBottom = "true">
+    	<Button 
+    	    android:id="@+id/back_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/back_button"
+	        android:onClick="onClick">
+	    </Button>
+    	<Button 
+    	    android:id="@+id/menu_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/home_button"
+	        android:onClick="onClick">
+	    </Button>
+	    <Button 
+	        android:id="@+id/map_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25" 
+	        android:text="@string/map_view"
+	        android:onClick="onClick">
+	    </Button>
+	    <Button 
+	        android:id="@+id/list_button" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:layout_weight=".25"
+	        android:text="@string/list_view"
+	        android:onClick="onClick">
+	     </Button>
+	</LinearLayout>
+	
+ 
+</RelativeLayout>
