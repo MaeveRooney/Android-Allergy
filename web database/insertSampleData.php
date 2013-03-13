@@ -5,14 +5,10 @@ $database="maeveroo_AllergyApp";
 mysql_connect(localhost,$user,$password);
 @mysql_select_db($database) or die( "Unable to select database");
 
-$insertUserOne="INSERT INTO users(username,email,password,wheatAllergy,glutenAllergy,dairyAllergy,nutAllergy) VALUES('johnsmith','example@email.com','secret1',0,0,1,0)";
-$insertUserTwo="INSERT INTO users(username,email,password,wheatAllergy,glutenAllergy,dairyAllergy,nutAllergy) VALUES('johndoe','example2@email.com','secret1',0,1,1,0)";
-$insertUserThree="INSERT INTO users(username,email,password,wheatAllergy,glutenAllergy,dairyAllergy,nutAllergy) VALUES('janesmith','example3@email.com','secret1',1,0,0,0)";
-$insertUserFour="INSERT INTO users(username,email,password,wheatAllergy,glutenAllergy,dairyAllergy,nutAllergy) VALUES('fredwhite','example4@email.com','secret1',1,1,1,1)";
-mysql_query($insertUserOne);
-mysql_query($insertUserTwo);
-mysql_query($insertUserThree);
-mysql_query($insertUserFour);
+storeUser('johnsmith','example@email.com','secret1',0,0,1,0);
+storeUser('johndoe','example2@email.com','secret1',0,1,1,0);
+storeUser('janesmith','example3@email.com','secret1',1,0,0,0);
+storeUser('fredwhite','example4@email.com','secret1',1,1,1,1);
 
 $insertRestaurantOne="INSERT INTO restaurants(name,GPSLatitude,GPSLongitude) VALUES('Yummy Place',53344800,-6266100)";
 $insertRestaurantTwo="INSERT INTO restaurants(name,GPSLatitude,GPSLongitude) VALUES('Food Stuffs',53342700,-6267200)";
@@ -73,7 +69,43 @@ mysql_query($insertFavouritesFour);
 mysql_query($insertFavouritesFive);
 mysql_query($insertFavouritesSix);
 
-echo "Data Inserted!";
+
+     public function storeUser($name, $email, $password, $wheat, $gluten, $dairy) {
+     	echo "working";
+        $id = uniqid('', true);
+        $hash = $this->hashSSHA($password);
+        $encrypted_password = $hash["encrypted"]; // encrypted password
+        $salt = $hash["salt"]; // salt
+        $result = mysql_query("INSERT INTO users(id, name, email, encrypted_password, salt, wheatAllergy, glutenAllergy, dairyAllergy, nutAllergy) VALUES('$id','$username', '$email', '$encrypted_password', '$salt','$wheat','$gluten','$dairy','$nut'");
+        // check for successful store
+        if ($result) {
+        	echo "success";
+            // get user details
+            $uid = mysql_insert_id(); // last inserted id
+            $result = mysql_query("SELECT * FROM users WHERE id = '$id'");
+            // return user details
+            return mysql_fetch_array($result);
+        } else {
+        	echo "fail";
+            return false;
+        }
+    }
+
+ /**
+     * Encrypting password
+     * @param password
+     * returns salt and encrypted password
+     */
+    public function hashSSHA($password) {
+
+        $salt = sha1(rand());
+        $salt = substr($salt, 0, 10);
+        $encrypted = base64_encode(sha1($password . $salt, true) . $salt);
+        $hash = array("salt" => $salt, "encrypted" => $encrypted);
+        return $hash;
+    }
+
+echo "Data Inserted! Boom";
 
 mysql_close();
 ?>
