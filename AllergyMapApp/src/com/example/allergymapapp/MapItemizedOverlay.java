@@ -123,7 +123,7 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		public void onClick(DialogInterface dialog, int which) {
 			// TODO go to review restaurant
 			//pass restaurant id
-			Intent intent = new Intent(mContext, RestaurantDetailView.class);
+			Intent intent = new Intent(mContext, ReviewRestaurant.class);
 			Bundle bundle = new Bundle();
 			bundle.putInt("restaurantID", Integer.parseInt(id));
 			intent.putExtras(bundle);

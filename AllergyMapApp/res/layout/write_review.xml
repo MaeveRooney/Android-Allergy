@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="448dp"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="10dip" >
         
@@ -35,7 +36,8 @@
             android:id="@+id/restaurantName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:hint="Restaurant Name"/>
         
         <!--  Location Button -->
         
@@ -46,21 +48,6 @@
             android:layout_marginTop="20dip"
             android:text="Locate on Map"
             android:onClick="locateRestaurant" />
-
-
-        <!--  Email Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:text="Email Address" />
-        <!--  Email TextField -->
-
-        <TextView
-            android:id="@+id/restaurantEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dip"/>
         
         <!--  Address Label -->
         <TextView
@@ -71,17 +58,113 @@
         
         <!--  Address TextField -->
 
-        <TextView
+        <EditText
             android:id="@+id/restaurantAddress"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20dip"/>
 
-		
+        <!--  Email Label -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Email Address" />
+        
+        <!--  Email TextField -->
+
+        <EditText
+            android:id="@+id/restaurantEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:hint="email address"/>  
+            
+        <!--  Error message -->
+        <TextView 
+            android:id="@+id/email_error"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#e30000"
+            android:padding="10dip"
+            android:textStyle="bold"/>
        
+       <!--  wheat rating Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Wheat Allergy Rating" />
+        
+       <RatingBar
+           android:id="@+id/ratingbar_wheat"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5"/>
+       
+       <!--  gluten rating Label -->
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Gluten Allergy Rating" />
+        
+       <RatingBar
+           android:id="@+id/ratingbar_gluten"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5" />
+       
+       <!--  dairy rating Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Dairy Allergy Rating" />
+        
+       <RatingBar
+           android:id="@+id/ratingbar_dairy"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5" />
+       
+       <!--  nut rating Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Nut Allergy Rating" />
+        
+       <RatingBar
+           android:id="@+id/ratingbar_nut"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5" />
+       
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Share your experience" />
+
+       <EditText
+           android:id="@+id/reviewText"
+           android:gravity="top|left"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:ems="10"
+           android:minLines="5"
+           android:scrollHorizontally="false"
+           android:scrollbars="vertical"
+           android:singleLine="false"
+           android:inputType="textFilter|textMultiLine|textNoSuggestions" >
+       </EditText>
 
         <!--  Save Button -->
-        
+
         <Button
             android:id="@+id/btnSaveChanges"
             android:layout_width="fill_parent"

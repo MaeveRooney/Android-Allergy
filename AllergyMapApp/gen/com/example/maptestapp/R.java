@@ -14,7 +14,11 @@ public final class R {
         public static final int btn_blue=0x7f020000;
         public static final int ic_action_search=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int red_marker=0x7f020003;
+        public static final int ratingbar_custom=0x7f020003;
+        public static final int red_marker=0x7f020004;
+        public static final int star_empty=0x7f020005;
+        public static final int star_full=0x7f020006;
+        public static final int star_half=0x7f020007;
     }
     public static final class id {
         public static final int LinearLayout01=0x7f07000d;
@@ -46,23 +50,28 @@ public final class R {
         public static final int maptablayout=0x7f07000b;
         public static final int mapview=0x7f07000c;
         public static final int menu_button=0x7f070005;
-        public static final int menu_settings=0x7f070035;
+        public static final int menu_settings=0x7f07003a;
         public static final int name_button=0x7f070018;
         public static final int nutCheck=0x7f07001f;
         public static final int password_button=0x7f07001b;
         public static final int password_error=0x7f070025;
+        public static final int ratingbar_dairy=0x7f070037;
+        public static final int ratingbar_gluten=0x7f070036;
+        public static final int ratingbar_nut=0x7f070038;
+        public static final int ratingbar_wheat=0x7f070035;
         public static final int registerEmail=0x7f070019;
         public static final int registerName=0x7f070000;
         public static final int registerPassword=0x7f070023;
         public static final int register_error=0x7f070026;
-        public static final int restaurantAddress=0x7f070034;
-        public static final int restaurantEmail=0x7f070033;
+        public static final int restaurantAddress=0x7f070033;
+        public static final int restaurantEmail=0x7f070034;
         public static final int restaurantName=0x7f070031;
         public static final int restaurant_address=0x7f07002a;
         public static final int restaurant_email=0x7f07002c;
         public static final int restaurant_image=0x7f07002b;
         public static final int restaurant_name=0x7f070029;
         public static final int restaurant_phone=0x7f07002d;
+        public static final int reviewText=0x7f070039;
         public static final int review_button=0x7f070017;
         public static final int review_header=0x7f07002f;
         public static final int review_info=0x7f070021;
