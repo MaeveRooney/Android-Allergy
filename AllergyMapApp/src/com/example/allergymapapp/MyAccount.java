@@ -2,6 +2,7 @@ package com.example.allergymapapp;
 
 import java.util.HashMap;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.maptestapp.R;
@@ -11,13 +12,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyAccount extends Activity{
 	Button btnUsername;
@@ -86,24 +91,27 @@ public class MyAccount extends Activity{
         else {
 	        //Get user from database
 	        HashMap<String,String> user = db.getUserDetails();
+
+	        username = (String)user.get("username");
+	        email = (String)user.get("email");
+	        userId = (String)user.get("uid");
+	        wheat = (String)user.get("wheat");
+	        gluten = (String)user.get("gluten");
+	        dairy = (String)user.get("dairy");
+	        nut = (String)user.get("nut");
+	        usernameText.setText(username);
+	        emailText.setText(email);
 	        
-	        usernameText.setText(user.get("username"));
-	        emailText.setText(user.get("email"));
-	        userId = user.get("uid");
-	        wheat = user.get("wheat");
-	        gluten = user.get("gluten");
-	        dairy = user.get("dairy");
-	        nut = user.get("nut");
-	        if (wheat == "1"){
+	        if (wheat.equals("1")){
 	        	wheatCheck.setChecked(true);
 	        }
-	        if (gluten == "1"){
+	        if (gluten.equals("1")){
 	        	glutenCheck.setChecked(true);
 	        }
-	        if (dairy == "1"){
+	        if (dairy.equals("1")){
 	        	dairyCheck.setChecked(true);
 	        }
-	        if (nut == "1"){
+	        if (nut.equals("1")){
 	        	nutCheck.setChecked(true);
 	        }
         }       
@@ -141,7 +149,132 @@ public class MyAccount extends Activity{
         }
     }
     
+    
+    // Alertdialog to prompt user to enter new username
+    // checks dynamically to see is username is available
+    public void changeUsername(View v) {
+    	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    	alert.setTitle("Change Username:");
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+    	LinearLayout layout = new LinearLayout(MyAccount.this);
+    	layout.setOrientation(LinearLayout.VERTICAL);
+
+    	final EditText newUsername = new EditText(MyAccount.this);
+    	newUsername.setHint("new Username");
+    	
+    	layout.addView(newUsername);
+
+    	
+    	alert.setView(layout).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog, int whichButton) {
+    		   UserFunctions userFunction = new UserFunctions(MyAccount.this);
+				JSONObject json = userFunction.checkUsername(newUsername.getText().toString());
+				try {
+					if (json.getString("error") != null) {
+					    String res = json.getString("error");
+					    if(Integer.parseInt(res) == 3){
+					    	CharSequence text = "Username Unavailable";
+				            int duration = Toast.LENGTH_LONG;
+				            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+				            toast.show();
+					    }
+					    else {
+							username = newUsername.getText().toString();
+							usernameText.setText(username);
+						}
+					}
+					
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+    	    
+    	   } 
+    	   }).setNegativeButton("Cancel",
+    	  new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog,int whichButton) {
+    	     dialog.cancel();
+    	   }
+    	  });
+    	alert.show();
+    }
+    
+    // Alertdialog to prompt user to enter new username
+    // checks dynamically to see is username is available
+    public void changeEmail(View v) {
+    	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+    	alert.setTitle("Change Email Address:");
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+    	LinearLayout layout = new LinearLayout(MyAccount.this);
+    	layout.setOrientation(LinearLayout.VERTICAL);
+
+    	final EditText newEmail = new EditText(MyAccount.this);
+    	newEmail.setHint("New Email Address");
+    	
+    	layout.addView(newEmail);
+
+    	
+    	alert.setView(layout).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog, int whichButton) {
+    		   
+    		   if (newEmail.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+") && newEmail.getText().toString().length() > 0)
+	            {
+					alert.setMessage("");
+					UserFunctions userFunction = new UserFunctions(MyAccount.this);
+					JSONObject json = userFunction.checkEmail(newEmail.getText().toString());
+					try {
+						if (json.getString("error") != null) {
+						    String res = json.getString("error");
+						    if(Integer.parseInt(res) == 2){
+						    	CharSequence text = "Email already registered";
+					            int duration = Toast.LENGTH_LONG;
+					            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+					            toast.show();
+						    }
+						    else {
+								email = newEmail.getText().toString();
+						        emailText.setText(email);
+							}
+						}
+						
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	            }
+				else {
+					CharSequence text = "invalid email";
+		            int duration = Toast.LENGTH_LONG;
+		            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+		            toast.show();
+				}
+
+    	    
+    	   } 
+    	   }).setNegativeButton("Cancel",
+    	  new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog,int whichButton) {
+    	     dialog.cancel();
+    	   }
+    	  });
+    	alert.show();
+    }
+    
+    // enter current password and check if correct
+    // compare 2 new passwords to see if match
+    // replace password in db with new one
     public void changePassword(View v) {
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
     	LinearLayout layout = new LinearLayout(MyAccount.this);
     	layout.setOrientation(LinearLayout.VERTICAL);
 
@@ -158,32 +291,87 @@ public class MyAccount extends Activity{
     	layout.addView(confirmPassword);
     	
     	final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-    	alert.setView(layout);
-    	alert.setTitle("Change Password:").setPositiveButton("Save",
-    	  new DialogInterface.OnClickListener() {
-    	   public void onClick(DialogInterface dialog,
-    	     int whichButton) {
+    	alert.setView(layout).setTitle("Change Password:");
+    	alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog, int whichButton) {
 
     	    /* User clicked OK so do some stuff */
+    		   UserFunctions userFunction = new UserFunctions(MyAccount.this);
+				JSONObject json = userFunction.checkPassword(userId, currentPassword.getText().toString());
+				try {
+					if (json.getString("success") != null) {
+					    String res = json.getString("success");
+					    if(Integer.parseInt(res) == 1){
+					    	//password correct
+					    	if (confirmPassword.getText().toString().matches(newPassword.getText().toString())){				    	
+					    		JSONObject json2 = userFunction.changePassword(userId, newPassword.getText().toString());
+					    		if (json2.getString("success") != null) {
+								    String res2 = json2.getString("success");
+								    if(Integer.parseInt(res2) == 1){
+							    		CharSequence text = "Password Changed";
+							            int duration = Toast.LENGTH_LONG;
+							            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+							            toast.show();
+								    }
+								    else {
+								    	CharSequence text = "Password not changed";
+							            int duration = Toast.LENGTH_LONG;
+							            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+							            toast.show();
+								    }
+					    		}
+					    	}
+					    	else {
+					    		CharSequence text = "New Password did not match";
+					            int duration = Toast.LENGTH_LONG;
+					            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+					            toast.show();
+					    	}
+					    }
+					    else {
+					    	CharSequence text = "Incorrect Password";
+				            int duration = Toast.LENGTH_LONG;
+				            Toast toast = Toast.makeText(MyAccount.this, text, duration);
+				            toast.show();
+					    }
+					}
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
     	   }
     	  }).setNegativeButton("Cancel",
     	  new DialogInterface.OnClickListener() {
-    	   public void onClick(DialogInterface dialog,
-    	     int whichButton) {
-    	     /*
-    	     * User clicked cancel so do some stuff
-    	     */
+    	   public void onClick(DialogInterface dialog,int whichButton) {
+    	     dialog.cancel();
     	   }
     	  });
     	alert.show();
     }
     
-    public void saveChanges() {
+    public void saveChanges(View v) {
     	UserFunctions userFunction = new UserFunctions(MyAccount.this);
         JSONObject json = userFunction.changeUserDetails(userId, username, email, wheat, gluten, dairy, nut);
-
+        //Clear all previous data in database
+        DatabaseHandler db = new DatabaseHandler(MyAccount.this);
+        userFunction.logoutUser(getApplicationContext());
+        db.addUser(username, email, userId, wheat, gluten, dairy, nut);
+        
+        //Show toast with success text
+        CharSequence text = "Changes Saved";
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(MyAccount.this, text, duration);
+        toast.show();
+        
+        Intent menuIntent = new Intent(MyAccount.this, MainMenu.class);
+        startActivityForResult(menuIntent, 0);
+        finish();
     }
     
+    // Navigation buttons
     public void onClick(View v) {
 		switch(v.getId()) {
     	case R.id.menu_button:

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/maptablayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.google.android.maps.MapView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/LinearLayout01"
+        android:layout_alignParentTop="true"
+        android:apiKey="0CdGiQJmpw-rd7JnNP_3Tu24f1uSjHSMIsS8Edg"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true" >
+        
+	        <TextView
+	        android:id="@+id/instructions"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="10dip"
+	        android:text="Drag Map Marker to restaurant location"
+	        android:textSize="20dip" 
+	        android:padding="5dp"/>
+
+		 <LinearLayout
+	        android:id="@+id/LinearLayout02"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true" >       
+	        
+	        <Button
+	            android:id="@+id/back_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:onClick="onClick"
+	            android:text="@string/back_button" >
+	        </Button>
+	
+	        <Button
+	            android:id="@+id/save_location_button"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            android:onClick="onClick"
+	            android:text="@string/location_button" >
+	        </Button>
+	    </LinearLayout>
+	</LinearLayout>
+
+</RelativeLayout>

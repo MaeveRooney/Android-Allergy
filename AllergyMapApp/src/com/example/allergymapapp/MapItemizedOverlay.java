@@ -57,7 +57,8 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	protected boolean onTap(int index) {
 	  OverlayItem item = mOverlays.get(index);
 	  final AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
-	  final String id = item.getSnippet();
+	  final String id = item.getTitle();
+	  final String marker = item.getSnippet();
 	  String name = "";
 	  String rating = "";
 	  

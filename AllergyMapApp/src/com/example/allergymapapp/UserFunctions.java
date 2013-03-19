@@ -59,6 +59,40 @@ public class UserFunctions {
 		}
         return json;
     }
+    
+    /**
+     * function make Login Request
+     * @param id
+     * @param password
+     * */
+    public JSONObject checkPassword(String id, String password){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", "checkpassword"));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response = httpRequest.execute(loginURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return json;
+    }
  
     /**
      * function make Login Request

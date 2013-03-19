@@ -25,7 +25,7 @@ public class ReviewDetailView extends Activity{
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.review_view);
+        setContentView(R.layout.read_review_view);
         Bundle bundle = getIntent().getExtras();
     	int reviewID = bundle.getInt("reviewID");
     	String id = Integer.toString(reviewID);

@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -52,6 +53,7 @@ public class RegisterActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
  
         // Importing all assets like buttons, text fields
         inputUsername = (EditText) findViewById(R.id.registerName);
@@ -144,7 +146,7 @@ public class RegisterActivity extends Activity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				if (inputEmail.getText().toString().matches(inputPassword.getText().toString()) && s.length() > 0)
+				if (confirmPassword.getText().toString().matches(inputPassword.getText().toString()) && s.length() > 0)
 				{
 					passwordErrorMsg.setText("");
 				}
@@ -269,5 +271,26 @@ public class RegisterActivity extends Activity {
                 finish();
             }
         });
+    }
+    
+    // Navigation buttons
+    public void onClick(View v) {
+		switch(v.getId()) {
+    	case R.id.menu_button:
+    		Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
+            startActivityForResult(menuIntent, 0);
+        break;
+        case R.id.list_button:
+        	Intent listIntent = new Intent(v.getContext(), ListRestaurants.class);
+            startActivityForResult(listIntent, 0);
+        break;
+        case R.id.map_button:
+        	Intent mapIntent = new Intent(v.getContext(), RestaurantMap.class);
+            startActivityForResult(mapIntent, 0);
+        break;
+        case R.id.back_button:
+        	finish();
+        break;
+		}
     }
 }

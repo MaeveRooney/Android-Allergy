@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_above="@+id/LinearLayout03" >
+    android:layout_height="fill_parent" >
  
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/LinearLayout03" >
+
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="448dp"
         android:orientation="vertical"
         android:padding="10dip" >
+        
         <!--  View Title Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
-            android:text="LOGIN"
-            android:textSize="25sp"
+            android:text="REVIEW A RESTAURANT"
+            android:textSize="25dip"
             android:textStyle="bold" />
+        
+        
+        <!--  Name Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Name" />
+
+
+        <EditText
+            android:id="@+id/restaurantName"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"/>
+        
+        <!--  Location Button -->
+        
+        <Button
+            android:id="@+id/btnLocate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Locate on Map"
+            android:onClick="locateRestaurant" />
+
+
         <!--  Email Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Email" />
+            android:layout_marginTop="20dip"
+            android:text="Email Address" />
         <!--  Email TextField -->
-        <EditText
-            android:id="@+id/loginEmail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:inputType="text"/>
- 
-        <!--  Password Label -->
+
+        <TextView
+            android:id="@+id/restaurantEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"/>
+        
+        <!--  Address Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
-            android:text="Password" />
-        <!--  Password TextField -->
-        <EditText
-            android:id="@+id/loginPassword"
-            android:layout_width="fill_parent"
+            android:layout_marginTop="20dip"
+            android:text="Street Address" />
+        
+        <!--  Address TextField -->
+
+        <TextView
+            android:id="@+id/restaurantAddress"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:password="true" 
-            android:inputType="text"/>
- 
-        <!--  Error message -->
-        <TextView android:id="@+id/login_error"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#e30000"
-                    android:padding="10dip"
-                    android:textStyle="bold"/>
- 
-        <!--  Login Button -->
+            android:textSize="20dip"/>
+
+		
+       
+
+        <!--  Save Button -->
+        
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSaveChanges"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:text="Login" />
+            android:text="Save Changes"
+            android:onClick="saveChanges" />
  
-        <!--  Link to Registration Screen -->
-        <Button
-            android:id="@+id/btnLinkToRegisterScreen"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:text="I don&apos;t have account. Register Me!"
-            android:textStyle="bold" />
     </LinearLayout>
- 
-</ScrollView>
-
-<LinearLayout 
+    </ScrollView>
+    
+    <LinearLayout 
     android:id="@+id/LinearLayout03" 
     android:layout_height="wrap_content" 
     android:layout_width="fill_parent"
@@ -114,5 +131,6 @@
 	        android:onClick="onClick">
 	     </Button>
 	</LinearLayout>
-	</RelativeLayout>
 	
+ 
+</RelativeLayout>

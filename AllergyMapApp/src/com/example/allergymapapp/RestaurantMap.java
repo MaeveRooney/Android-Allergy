@@ -30,7 +30,8 @@ public class RestaurantMap extends MapActivity {
 	private MapView mapView;
 	private GeoPoint Dublin = new GeoPoint(53345800, -6267100);
 	private MyLocationOverlay myLocationOverlay;
-	
+	private GeoPoint mCurrentPoint;
+
 	@Override
 	protected boolean isRouteDisplayed() {
 	    return false;
@@ -43,24 +44,28 @@ public class RestaurantMap extends MapActivity {
 
 	    Button mapBtn = (Button)findViewById(R.id.map_button);
 	    mapBtn.setEnabled(false);
-		
+
 	    mapView = (MapView) findViewById(R.id.mapview);
 	    myMapController = mapView.getController();
-	    myMapController.setCenter(Dublin);
-	    myMapController.animateTo(Dublin);
-	    myMapController.setZoom(13);
+	    myMapController.setZoom(15);
 	    mapView.setBuiltInZoomControls(true);
-	    
-	    
+
+
 	    // create an overlay that shows our current location
         myLocationOverlay = new MyLocationOverlay(this, mapView);
+        myLocationOverlay.runOnFirstFix(new Runnable() {
+            public void run() {
+                mapView.getController().animateTo(myLocationOverlay.getMyLocation());
+            }
+        });
 
         // add this overlay to the MapView and refresh it
         mapView.getOverlays().add(myLocationOverlay);
         mapView.postInvalidate();
-        	    
+
+      	    
 	    List<Overlay> mapOverlays = mapView.getOverlays();
-	    Drawable drawable = this.getResources().getDrawable(R.drawable.marker);
+	    Drawable drawable = this.getResources().getDrawable(R.drawable.red_marker);
 	    MapItemizedOverlay itemizedoverlay = new MapItemizedOverlay(drawable, this);
 	    
 	    //get restaurants from web server
@@ -88,7 +93,12 @@ public class RestaurantMap extends MapActivity {
 		    	String id = "id";
 		    	String name = "name";
 		    	String Latitude = "GPSLatitude";
-		    	String Longitude = "GPSLongitiude";
+		    	String Longitude = "GPSLongitude";
+		    	String wheatRating = "wheatRating";
+		    	String glutenRating = "glutenRating";
+		    	String dairyRating = "dairyRating";
+		    	String nutRating = "nutRating";
+		    	String marker = "good";
 		    	try {
 					e = myArray.getJSONObject(i);
 				} catch (JSONException ex) {
@@ -106,20 +116,43 @@ public class RestaurantMap extends MapActivity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}try {
-					Latitude = e.getString("GPSLatitude");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-		    	try {
 					Longitude = e.getString("GPSLongitude");
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}try {
+					Latitude = e.getString("GPSLatitude");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}try {
+					wheatRating = e.getString("wheatRating");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}try {
+					glutenRating = e.getString("glutenRating");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}try {
+					dairyRating = e.getString("dairyRating");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}try {
+					nutRating = e.getString("nutRating");
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+		    	
+		    	// check if user.
+		    	// check ratings for each allergy in restaurant object.
+		    	// assign red marker to low rating restaurants
 	   	   		
 	   	   		GeoPoint point = new GeoPoint(Integer.parseInt(Latitude),Integer.parseInt(Longitude));
-	   	   		OverlayItem overlayitem = new OverlayItem(point, name, id);
+	   	   		OverlayItem overlayitem = new OverlayItem(point, id, marker);
 	   	   		//add Restaurants to overlay array
 	     	    itemizedoverlay.addOverlay(overlayitem);
 		    }
@@ -138,8 +171,8 @@ public class RestaurantMap extends MapActivity {
 	public void onClick(View v) {
 		switch(v.getId()) {
     	case R.id.menu_button:
-    		Intent mapIntent = new Intent(v.getContext(), MainMenu.class);
-            startActivityForResult(mapIntent, 0);
+    		Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
+            startActivityForResult(menuIntent, 0);
         break;
         case R.id.list_button:
         	Intent listIntent = new Intent(v.getContext(), ListRestaurants.class);
@@ -166,5 +199,6 @@ public class RestaurantMap extends MapActivity {
 	   	// when our activity pauses, we want to remove listening for location updates
 	   	myLocationOverlay.disableMyLocation();
    }
+   
     
 }

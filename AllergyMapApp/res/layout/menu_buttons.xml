@@ -20,5 +20,17 @@
         style="@style/ButtonText"
         android:background="@drawable/btn_blue"
         android:text="@string/account_button" />
+    
+    <Button
+        android:id="@+id/login_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/login_button" />
+    
+    <Button
+        android:id="@+id/review_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/review_button" />
 
 </LinearLayout>

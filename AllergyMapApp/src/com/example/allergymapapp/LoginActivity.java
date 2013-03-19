@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class LoginActivity extends Activity {
     private static String KEY_SUCCESS = "success";
     private static String KEY_ERROR = "error";
     private static String KEY_ERROR_MSG = "error_msg";
-    private static String KEY_UID = "uid";
+    private static String KEY_UID = "id";
     private static String KEY_NAME = "username";
     private static String KEY_EMAIL = "email";
     private static String KEY_WHEAT_ALLERGY = "wheatAllergy";
@@ -39,6 +40,7 @@ public class LoginActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
  
         // Importing all assets like buttons, text fields
         inputEmail = (EditText) findViewById(R.id.loginEmail);
@@ -55,6 +57,15 @@ public class LoginActivity extends Activity {
                 String password = inputPassword.getText().toString();
                 UserFunctions userFunction = new UserFunctions(LoginActivity.this);
                 JSONObject json = userFunction.loginUser(email, password);
+                
+                if (email.matches("")) {
+                	loginErrorMsg.setText("Enter email address");
+                	return;
+                }
+                if (password.matches("")) {
+                	loginErrorMsg.setText("Enter password");
+                	return;
+                }
  
                 // check for login response
                 try {
@@ -103,5 +114,26 @@ public class LoginActivity extends Activity {
                 finish();
             }
         });
+    }
+    
+    // Navigation buttons
+    public void onClick(View v) {
+		switch(v.getId()) {
+    	case R.id.menu_button:
+    		Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
+            startActivityForResult(menuIntent, 0);
+        break;
+        case R.id.list_button:
+        	Intent listIntent = new Intent(v.getContext(), ListRestaurants.class);
+            startActivityForResult(listIntent, 0);
+        break;
+        case R.id.map_button:
+        	Intent mapIntent = new Intent(v.getContext(), RestaurantMap.class);
+            startActivityForResult(mapIntent, 0);
+        break;
+        case R.id.back_button:
+        	finish();
+        break;
+		}
     }
 }
