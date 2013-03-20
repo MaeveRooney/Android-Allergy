@@ -103,6 +103,9 @@ public class ListRestaurants extends ListActivity {
         	Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
             startActivityForResult(menuIntent, 0);
         break;
+        case R.id.back_button:
+        	finish();
+        break;
 		}
 		
 	}

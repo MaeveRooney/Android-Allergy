@@ -15,6 +15,8 @@ public class MainMenu extends Activity implements OnClickListener {
     private Button accountBtn;
     private Button loginBtn;
     private Button reviewBtn;
+    private Button myReviewsBtn;
+    private Button favouritesBtn;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,11 @@ public class MainMenu extends Activity implements OnClickListener {
 		loginBtn.setOnClickListener(this);
 		reviewBtn = (Button)findViewById(R.id.review_button);
 		reviewBtn.setOnClickListener(this);
+		favouritesBtn = (Button)findViewById(R.id.favourites_button);
+		favouritesBtn.setOnClickListener(this);
+		myReviewsBtn = (Button)findViewById(R.id.my_reviews_button);
+		myReviewsBtn.setOnClickListener(this);
+		
 	}
 	
 	@Override
@@ -55,6 +62,15 @@ public class MainMenu extends Activity implements OnClickListener {
 	        	Intent reviewIntent = new Intent(view.getContext(), ReviewRestaurant.class);
                 startActivityForResult(reviewIntent, 0);
 	        break;
+	        case R.id.my_reviews_button:
+	        	Intent myReviewsIntent = new Intent(view.getContext(), MyReviews.class);
+                startActivityForResult(myReviewsIntent, 0);
+	        break;
+	        case R.id.favourites_button:
+	        	Intent favouritesIntent = new Intent(view.getContext(), MyFavouriteRestaurants.class);
+                startActivityForResult(favouritesIntent, 0);
+	        break;
+	        
 		}
 
 	}

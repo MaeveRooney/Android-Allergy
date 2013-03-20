@@ -32,5 +32,17 @@
         style="@style/ButtonText"
         android:background="@drawable/btn_blue"
         android:text="@string/review_button" />
+    
+    <Button
+        android:id="@+id/favourites_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/favourites_button" />
+    
+    <Button
+        android:id="@+id/my_reviews_button"
+        style="@style/ButtonText"
+        android:background="@drawable/btn_blue"
+        android:text="@string/my_reviews_button" />
 
 </LinearLayout>

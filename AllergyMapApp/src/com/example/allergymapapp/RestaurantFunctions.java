@@ -20,6 +20,7 @@ public class RestaurantFunctions {
     private static String insert_tag = "restaurant";
     private static String alter_tag = "alter";
     private static String review_tag = "review";
+    private static String favourites_tag = "favourites";
  
     // constructor
     public RestaurantFunctions(Context context){
@@ -117,6 +118,35 @@ public class RestaurantFunctions {
         params.add(new BasicNameValuePair("nut", nut));
         params.add(new BasicNameValuePair("overall", overall));
         params.add(new BasicNameValuePair("reviewText", reviewText));
+ 
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response = httpRequest.execute(restaurantURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return json;
+    }
+    
+    public JSONObject getUserFavourites(String userID){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", favourites_tag));
+        params.add(new BasicNameValuePair("userID", userID));
  
         String response = null;
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
