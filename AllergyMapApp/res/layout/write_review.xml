@@ -49,6 +49,21 @@
             android:text="Locate on Map"
             android:onClick="locateRestaurant" />
         
+        <!--  Phone Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Phone Number" />
+        
+        <!--  Phone TextField -->
+
+        <EditText
+            android:id="@+id/restaurantPhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"/>
+        
         <!--  Address Label -->
         <TextView
             android:layout_width="fill_parent"
@@ -92,6 +107,7 @@
        
        <!--  wheat rating Label -->
         <TextView
+            android:id="@+id/wheatHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -101,12 +117,14 @@
            android:id="@+id/ratingbar_wheat"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:numStars="5"/>
+           android:numStars="5"
+           android:stepSize="0.5"/>
        
        <!--  gluten rating Label -->
 
 
         <TextView
+            android:id="@+id/glutenHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -116,10 +134,12 @@
            android:id="@+id/ratingbar_gluten"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:numStars="5" />
+           android:numStars="5" 
+           android:stepSize="0.5"/>
        
        <!--  dairy rating Label -->
         <TextView
+            android:id="@+id/dairyHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -129,10 +149,12 @@
            android:id="@+id/ratingbar_dairy"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:numStars="5" />
+           android:numStars="5"
+           android:stepSize="0.5" />
        
        <!--  nut rating Label -->
         <TextView
+            android:id="@+id/nutHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -142,7 +164,8 @@
            android:id="@+id/ratingbar_nut"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:numStars="5" />
+           android:numStars="5"
+           android:stepSize="0.5" />
        
         <TextView
             android:layout_width="fill_parent"
@@ -162,6 +185,20 @@
            android:singleLine="false"
            android:inputType="textFilter|textMultiLine|textNoSuggestions" >
        </EditText>
+       
+       <!--  overall rating Label -->
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dip"
+            android:text="Overall Rating" />
+        
+       <RatingBar
+           android:id="@+id/ratingbar_overall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:numStars="5"
+           android:stepSize="0.5" />
 
         <!--  Save Button -->
 

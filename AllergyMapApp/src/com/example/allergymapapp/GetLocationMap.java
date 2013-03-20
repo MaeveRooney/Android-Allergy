@@ -36,7 +36,15 @@ import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
 public class GetLocationMap extends MapActivity {
-	
+	String restaurantName;
+	String restaurantEmail;
+	String restaurantPhone;
+	String restaurantReviewText;
+	float wheatRating = 0;
+	float glutenRating = 0;
+	float dairyRating = 0;
+	float nutRating = 0;
+	float overallRating = 0;
 	private MapController myMapController;
 	private MapView mapView;
 	private LocationManager locationManager;
@@ -64,8 +72,19 @@ public class GetLocationMap extends MapActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.location_map);
 	    
-	    // TODO check if user logged in.
-	    // if user check for allergies and only show relevant info for user
+	    // get parameters passed from GetLocationMap activity
+	    Bundle bundle = getIntent().getExtras();
+	    if (bundle != null){
+	    	restaurantName = (String) bundle.getCharSequence("restaurantName");
+	    	restaurantEmail = (String) bundle.getCharSequence("restaurantEmail");
+	    	restaurantPhone = (String) bundle.getCharSequence("restaurantPhone");
+	    	restaurantReviewText = (String) bundle.getCharSequence("restaurantReviewText");
+	    	wheatRating = bundle.getFloat("wheatRating"); 
+	    	glutenRating = bundle.getFloat("glutenRating",glutenRating);
+	    	dairyRating = bundle.getFloat("dairyRating",dairyRating);
+	    	nutRating = bundle.getFloat("nutRating",nutRating);
+	    	overallRating = bundle.getFloat("overallRating",overallRating);
+	    }
 		
 	    mapView = (MapView) findViewById(R.id.mapview);
 	    mapView.setBuiltInZoomControls(true);
@@ -168,8 +187,18 @@ public class GetLocationMap extends MapActivity {
 			  	bundle.putInt("longitude", longitude);
 			  	bundle.putInt("latitude", latitude);
 			  	bundle.putCharSequence("address", addressString);
+			  	bundle.putCharSequence("restaurantName", restaurantName);
+				bundle.putCharSequence("restaurantPhone", restaurantPhone);
+				bundle.putCharSequence("restaurantEmail", restaurantEmail);
+				bundle.putCharSequence("restaurantReview", restaurantReviewText);
+				bundle.putFloat("wheatRating",wheatRating);
+				bundle.putFloat("glutenRating",glutenRating);
+				bundle.putFloat("dairyRating",dairyRating);
+				bundle.putFloat("nutRating",nutRating);
+				bundle.putFloat("overallRating",overallRating);
 			  	intent.putExtras(bundle);
 			  	GetLocationMap.this.startActivity(intent);
+			  	finish();
         break;
         case R.id.back_button:
         	finish();

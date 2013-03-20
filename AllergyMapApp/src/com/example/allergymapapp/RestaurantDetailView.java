@@ -101,6 +101,7 @@ public class RestaurantDetailView extends ListActivity {
   	    	 }    	
         }
   	    // Parse address string to add line breaks
+  	    // TODO check if null
   	    String newString = address.replace(",", ",\r\n");
   	    address = newString;
   	    nameText.setText(name);
@@ -169,6 +170,9 @@ public class RestaurantDetailView extends ListActivity {
     
 	public void onClick(View v) {
 		switch(v.getId()) {
+		case R.id.back_button:
+    		finish();
+        break;
     	case R.id.menu_button:
     		Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
             startActivityForResult(menuIntent, 0);
