@@ -118,7 +118,7 @@ public class GetLocationMap extends MapActivity {
         latitude = markerGeoPoint.getLatitudeE6();
         longitude = markerGeoPoint.getLongitudeE6();
         
-        Drawable marker=getResources().getDrawable(R.drawable.red_marker);
+        Drawable marker=getResources().getDrawable(R.drawable.green_marker);
         
         marker.setBounds(0, 0, marker.getIntrinsicWidth(),
                                 marker.getIntrinsicHeight());
@@ -270,7 +270,7 @@ public class GetLocationMap extends MapActivity {
 	        	result=true;
 	      }
 	      else if (action==MotionEvent.ACTION_UP && inDrag!=null) {
-	    	  	Drawable marker=getResources().getDrawable(R.drawable.red_marker);
+	    	  	Drawable marker=getResources().getDrawable(R.drawable.green_marker);
 	    		
 			    marker.setBounds(0, 0, marker.getIntrinsicWidth(), marker.getIntrinsicHeight());
 

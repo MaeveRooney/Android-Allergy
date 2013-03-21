@@ -22,7 +22,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 class TaskAsyncHttpPost extends AsyncTask<String, Void, String> {
 	private List<NameValuePair> nameValuePairs = null;
-	private ProgressDialog progDailog;
 	private Context context;
 	
 	public TaskAsyncHttpPost(List<NameValuePair> nameValuePairs, Context context){
@@ -33,12 +32,6 @@ class TaskAsyncHttpPost extends AsyncTask<String, Void, String> {
 	@Override
     protected void onPreExecute() {
         super.onPreExecute();
-        progDailog = new ProgressDialog(context);
-        progDailog.setMessage("Loading...");
-        progDailog.setIndeterminate(false);
-        progDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progDailog.setCancelable(true);
-        progDailog.show();
     }
 	
 	@Override
@@ -77,7 +70,6 @@ class TaskAsyncHttpPost extends AsyncTask<String, Void, String> {
 	@Override
     protected void onPostExecute(String unused) {
         super.onPostExecute(unused);
-        progDailog.dismiss();
     }
 }
 

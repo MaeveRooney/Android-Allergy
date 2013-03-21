@@ -1,11 +1,13 @@
 package com.example.allergymapapp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
  
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
@@ -21,6 +23,8 @@ public class RestaurantFunctions {
     private static String alter_tag = "alter";
     private static String review_tag = "review";
     private static String favourites_tag = "favourites";
+    private static String favourites_add_tag = "addfavourites";
+    private static String favourites_delete_tag = "deletefavourites";
  
     // constructor
     public RestaurantFunctions(Context context){
@@ -170,5 +174,214 @@ public class RestaurantFunctions {
         
         return json;
     }
+    
+    public JSONObject addToFavourites(String userID, String restaurantID){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", favourites_add_tag));
+        params.add(new BasicNameValuePair("userID", userID));
+        params.add(new BasicNameValuePair("restaurantID", restaurantID));
+ 
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response = httpRequest.execute(restaurantURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return json;
+    }
+    
+    public JSONObject removeFromFavourites(String userID, String restaurantID){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", favourites_delete_tag));
+        params.add(new BasicNameValuePair("userID", userID));
+        params.add(new BasicNameValuePair("restaurantID", restaurantID));
+ 
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response = httpRequest.execute(restaurantURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return json;
+    }
+    
+    public JSONObject increaseFavouriteCountOfRestaurant(String restaurantID){
+    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+        nameValuePairs.add(new BasicNameValuePair("id", restaurantID));
+        String numFavourites = null;
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, mContext);
+  	  	try {
+	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneRestaurant.php").get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	    if (response !=null){
+  		    JSONArray myArray = null;
+  		    JSONObject restaurantObject = null;
+  			try {
+  				myArray = new JSONArray(response);
+  			} catch (JSONException e) {
+  				e.printStackTrace();
+  			}
+  	    	try {
+  	    		restaurantObject = myArray.getJSONObject(0);
+  			} catch (JSONException e) {
+  				e.printStackTrace();
+  			}
+  	    	if (restaurantObject != null){
+  	    		try {
+  	    			numFavourites = restaurantObject.getString("numFavourites");
+  	    			if (numFavourites.matches("null")){
+  	    				numFavourites = "0";
+  	    			}
+  				} catch (JSONException e) {
+  					  // TODO Auto-generated catch block
+  					  e.printStackTrace();
+  				}
+  	    	 }    	
+        }
+  	    int tempNum = Integer.parseInt(numFavourites);
+  	    tempNum++;
+  	    numFavourites = tempNum+"";	    
+    	
+    	// Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", "changecount"));
+        params.add(new BasicNameValuePair("restaurantID", restaurantID));
+        params.add(new BasicNameValuePair("numFavourites", numFavourites));
+        
+ 
+        String response2 = null;
+  	  	TaskAsyncHttpPost httpRequest2 = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response2 = httpRequest2.execute(restaurantURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response2);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return json;
+    }
+    
+    public JSONObject decreaseFavouriteCountOfRestaurant(String restaurantID){
+    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+        nameValuePairs.add(new BasicNameValuePair("id", restaurantID));
+        String numFavourites = null;
+        String response = null;
+  	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, mContext);
+  	  	try {
+	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneRestaurant.php").get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	    if (response !=null){
+  		    JSONArray myArray = null;
+  		    JSONObject restaurantObject = null;
+  			try {
+  				myArray = new JSONArray(response);
+  			} catch (JSONException e) {
+  				e.printStackTrace();
+  			}
+  	    	try {
+  	    		restaurantObject = myArray.getJSONObject(0);
+  			} catch (JSONException e) {
+  				e.printStackTrace();
+  			}
+  	    	if (restaurantObject != null){
+  	    		try {
+  	    			numFavourites = restaurantObject.getString("numFavourites");
+  	    			if (numFavourites.matches("null")){
+  	    				numFavourites = "0";
+  	    			}
+  				} catch (JSONException e) {
+  					  // TODO Auto-generated catch block
+  					  e.printStackTrace();
+  				}
+  	    	 }    	
+        }
+  	    int tempNum = Integer.parseInt(numFavourites);
+  	    tempNum--;
+  	    numFavourites = tempNum+"";	    
+    	
+    	// Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", "changecount"));
+        params.add(new BasicNameValuePair("restaurantID", restaurantID));
+        params.add(new BasicNameValuePair("numFavourites", numFavourites));
+        
+ 
+        String response2 = null;
+  	  	TaskAsyncHttpPost httpRequest2 = new TaskAsyncHttpPost(params, mContext);
+  	  	try {
+	  		response2 = httpRequest2.execute(restaurantURL).get();
+  		} catch (InterruptedException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		} catch (ExecutionException e3) {
+  			// TODO Auto-generated catch block
+  			e3.printStackTrace();
+  		}
+  	  	
+        JSONObject json = null;
+		try {
+			json = new JSONObject(response2);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        return json;
+    }
+
  
 }

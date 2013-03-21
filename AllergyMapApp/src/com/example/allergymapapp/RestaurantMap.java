@@ -1,14 +1,18 @@
 package com.example.allergymapapp;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import android.os.Bundle;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +35,17 @@ public class RestaurantMap extends MapActivity {
 	private GeoPoint Dublin = new GeoPoint(53345800, -6267100);
 	private MyLocationOverlay myLocationOverlay;
 	private GeoPoint mCurrentPoint;
+	String userID = "";
+	int isFavourite = 0;
+	JSONObject jsonFavourites;
+	Boolean greenMarkerAdded = false;
+	Boolean redMarkerAdded = false;
+	Boolean heartMarkerAdded = false;
+	Boolean neutralMarkerAdded = false;
+	Boolean userHasWheatAllergy = false;
+	Boolean userHasGlutenAllergy = false;
+	Boolean userHasDairyAllergy = false;
+	Boolean userHasNutAllergy = false;
 
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -48,8 +63,7 @@ public class RestaurantMap extends MapActivity {
 	    mapView = (MapView) findViewById(R.id.mapview);
 	    myMapController = mapView.getController();
 	    myMapController.setZoom(15);
-	    mapView.setBuiltInZoomControls(true);
-
+	    mapView.setBuiltInZoomControls(true);    
 
 	    // create an overlay that shows our current location
         myLocationOverlay = new MyLocationOverlay(this, mapView);
@@ -63,11 +77,57 @@ public class RestaurantMap extends MapActivity {
         mapView.getOverlays().add(myLocationOverlay);
         mapView.postInvalidate();
 
-      	    
+      	//create overlay for each possible pin drawable    
 	    List<Overlay> mapOverlays = mapView.getOverlays();
-	    Drawable drawable = this.getResources().getDrawable(R.drawable.red_marker);
-	    MapItemizedOverlay itemizedoverlay = new MapItemizedOverlay(drawable, this);
+	    Drawable greenDrawable = this.getResources().getDrawable(R.drawable.green_marker);
+	    greenDrawable.setBounds(0 - greenDrawable.getIntrinsicWidth() / 2, 0 - greenDrawable.getIntrinsicHeight(), 
+	    		greenDrawable.getIntrinsicWidth() / 2, 0);//Set the new marker
+	    MapItemizedOverlay greenItemizedOverlay = new MapItemizedOverlay(greenDrawable, this);
 	    
+	    Drawable redDrawable = this.getResources().getDrawable(R.drawable.red_marker);
+	    redDrawable.setBounds(0 - redDrawable.getIntrinsicWidth() / 2, 0 - redDrawable.getIntrinsicHeight(), 
+	    		redDrawable.getIntrinsicWidth() / 2, 0);//Set the new marker
+	    MapItemizedOverlay redItemizedOverlay = new MapItemizedOverlay(redDrawable, this);
+	    
+	    Drawable heartDrawable = this.getResources().getDrawable(R.drawable.heart_marker);
+	    heartDrawable.setBounds(0 - heartDrawable.getIntrinsicWidth() / 2, 0 - heartDrawable.getIntrinsicHeight(), 
+	    		heartDrawable.getIntrinsicWidth() / 2, 0);//Set the new marker
+	    MapItemizedOverlay heartItemizedOverlay = new MapItemizedOverlay(heartDrawable, this);
+	    
+	    Drawable neutralDrawable = this.getResources().getDrawable(R.drawable.neutral_marker);
+	    neutralDrawable.setBounds(0 - neutralDrawable.getIntrinsicWidth() / 2, 0 - neutralDrawable.getIntrinsicHeight(), 
+	    		neutralDrawable.getIntrinsicWidth() / 2, 0);//Set the new marker
+	    MapItemizedOverlay neutralItemizedOverlay = new MapItemizedOverlay(neutralDrawable, this);
+	    
+	    //check if user has favourites
+		DatabaseHandler db = new DatabaseHandler(RestaurantMap.this);
+        //Check if user in sqlite database
+        if (db.getRowCount() != 0) {
+		      //Get user from database
+		      HashMap<String,String> user = db.getUserDetails();
+		      userID = (String)user.get("uid");
+		      String wheat = (String)user.get("wheat");
+	          String gluten = (String)user.get("gluten");
+	          String dairy = (String)user.get("dairy");
+	          String nut = (String)user.get("nut");
+	        
+	          if (wheat.equals("1")){
+	        	  userHasWheatAllergy = true;
+	          }
+	          if (gluten.equals("1")){
+	        	  userHasGlutenAllergy = true;
+	          }
+	          if (dairy.equals("1")){
+	        	  userHasDairyAllergy = true;
+	          }
+	          if (nut.equals("1")){
+	        	  userHasNutAllergy = true;
+	          }
+		      //get user favourites
+		      RestaurantFunctions restaurantFunction = new RestaurantFunctions(RestaurantMap.this);
+		      jsonFavourites = restaurantFunction.getUserFavourites(userID);	
+        }
+	      
 	    //get restaurants from web server
 	    String response = null;	    
 	    TaskAsyncHttpGet httpRequest = new TaskAsyncHttpGet(RestaurantMap.this);
@@ -98,7 +158,7 @@ public class RestaurantMap extends MapActivity {
 		    	String glutenRating = "glutenRating";
 		    	String dairyRating = "dairyRating";
 		    	String nutRating = "nutRating";
-		    	String marker = "good";
+		    	String goodBadNeutral = "neutral";
 		    	try {
 					e = myArray.getJSONObject(i);
 				} catch (JSONException ex) {
@@ -146,19 +206,61 @@ public class RestaurantMap extends MapActivity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				if (!userID.matches("")){
+					goodBadNeutral = compareRatingsToUserAllergies(wheatRating, glutenRating, dairyRating, nutRating);
+				}
+				
+				//create overlay item
+				GeoPoint point = new GeoPoint(Integer.parseInt(Latitude),Integer.parseInt(Longitude));
+	   	   		OverlayItem overlayitem = new OverlayItem(point, id, goodBadNeutral);
 		    	
 		    	// check if user.
 		    	// check ratings for each allergy in restaurant object.
 		    	// assign red marker to low rating restaurants
-	   	   		
-	   	   		GeoPoint point = new GeoPoint(Integer.parseInt(Latitude),Integer.parseInt(Longitude));
-	   	   		OverlayItem overlayitem = new OverlayItem(point, id, marker);
-	   	   		//add Restaurants to overlay array
-	     	    itemizedoverlay.addOverlay(overlayitem);
+				
+				//check if user has favourites
+			    if (!userID.matches("")) {
+			    	  checkIfRestaurantInFavourites(id);
+
+					  if (isFavourite == 1){
+						  //add heart marker
+						  heartItemizedOverlay.addOverlay(overlayitem);
+						  heartMarkerAdded = true;
+					  }
+					  else {
+						  //check rating against user allergies
+						  //if good rating use green marker
+						  // else use red marker
+						  if (goodBadNeutral.matches("good")){
+							  greenItemizedOverlay.addOverlay(overlayitem);
+							  greenMarkerAdded = true;
+						  }
+						  if (goodBadNeutral.matches("bad")){
+							  redItemizedOverlay.addOverlay(overlayitem);
+							  redMarkerAdded = true;
+						  }
+						  
+	
+					  }
+			    } else {
+			    	//add neutral marker
+		     	    neutralItemizedOverlay.addOverlay(overlayitem);
+		     	    neutralMarkerAdded= true;
+			    }	
 		    }
 		}
-	    mapOverlays.add(itemizedoverlay);
-
+	    if (greenMarkerAdded){
+	    	mapOverlays.add(greenItemizedOverlay);
+	    }
+		if (redMarkerAdded){
+			mapOverlays.add(redItemizedOverlay);    	
+		}
+		if (heartMarkerAdded){
+			mapOverlays.add(heartItemizedOverlay);
+		}
+		if (neutralMarkerAdded){
+			mapOverlays.add(neutralItemizedOverlay);
+		}
 	}
 
     @Override
@@ -190,6 +292,7 @@ public class RestaurantMap extends MapActivity {
 	   	super.onResume();
 	   	// when our activity resumes, we want to register for location updates
 	   	myLocationOverlay.enableMyLocation();
+	   	mapView.postInvalidate();
 
    }
 
@@ -198,6 +301,53 @@ public class RestaurantMap extends MapActivity {
 	   	super.onPause();
 	   	// when our activity pauses, we want to remove listening for location updates
 	   	myLocationOverlay.disableMyLocation();
+   }
+   
+   private void checkIfRestaurantInFavourites(String restaurantID){
+		// get users favourites from db
+	    JSONArray myArray = null;	    
+	    // check for favourites from json response
+	    try {
+            if (jsonFavourites.getString("success") != null) {
+                String res = jsonFavourites.getString("success");
+                if(Integer.parseInt(res) == 1){
+                	myArray = jsonFavourites.getJSONArray("array");
+                	try{
+                	  	
+        		        for(int i=0;i<myArray.length();i++){	
+        					JSONObject e = myArray.getJSONObject(i);
+        					String thisRestaurantID = e.getString("restaurantID");
+        					if (thisRestaurantID.matches(restaurantID)){
+        						isFavourite = 1;
+        						break;
+        					} else {
+        						isFavourite = 0;
+        					}
+        				}		
+        	        }catch(JSONException e)        {
+        	        	 Log.e("log_tag", "Error parsing data "+e.toString());
+        	        }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+	}
+   
+   private String compareRatingsToUserAllergies(String wheatRating, String glutenRating, String dairyRating, String nutRating){
+	   if (userHasWheatAllergy && Float.parseFloat(wheatRating)<=2.5){
+		   return "bad";
+	   }
+	   else if (userHasGlutenAllergy && Float.parseFloat(glutenRating)<=2.5){
+		   return "bad";
+	   }
+	   else if (userHasDairyAllergy && Float.parseFloat(dairyRating)<=2.5){
+		   return "bad";
+	   }
+	   else if (userHasNutAllergy && Float.parseFloat(nutRating)<=2.5){
+		   return "bad";
+	   }
+	   return "good";
    }
    
     
