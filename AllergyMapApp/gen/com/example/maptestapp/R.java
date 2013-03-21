@@ -43,11 +43,11 @@ public final class R {
         public static final int dairyHeader=0x7f07003d;
         public static final int email_button=0x7f07001c;
         public static final int email_error=0x7f070025;
-        public static final int favouriteText=0x7f070007;
+        public static final int favouriteText=0x7f070008;
         public static final int favourites_button=0x7f070017;
         public static final int glutenCheck=0x7f07001f;
         public static final int glutenHeader=0x7f07003b;
-        public static final int heartButton=0x7f070008;
+        public static final int heartButton=0x7f070007;
         public static final int instructions=0x7f07000c;
         public static final int item_subtitle=0x7f070001;
         public static final int item_title=0x7f070000;

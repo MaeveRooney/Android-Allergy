@@ -5,21 +5,21 @@
     android:orientation="horizontal"
     android:paddingLeft="20dp" 
     android:paddingRight="20dp">
-    
-    <TextView
-        android:id="@+id/favouriteText"
-        android:layout_width="fill_parent"
-        android:layout_weight="4"
-        android:layout_height="fill_parent"
-        android:text="tap heart to add To favourites" />
-    
+
     <Button 
         android:background="@drawable/heart_off" 
         android:id="@+id/heartButton" 
         android:layout_weight="1"
         android:layout_height="wrap_content" 
         android:layout_width="wrap_content" 
-        android:padding="10dip"/>  
+        android:layout_marginRight="10dp"/> 
+        
+    <TextView
+        android:id="@+id/favouriteText"
+        android:layout_width="fill_parent"
+        android:layout_weight="4"
+        android:layout_height="fill_parent"
+        android:text="tap heart to add To favourites" />
     
 
 </LinearLayout>
