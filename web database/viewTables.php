@@ -61,6 +61,7 @@ echo "<table border='1'>
 <th>nutNumVotes</th>
 <th>overallRating</th>
 <th>overallNumVotes</th>
+<th>numFavourites</th>
 </tr>";
 
 while($row = mysql_fetch_array($result))
@@ -83,6 +84,7 @@ while($row = mysql_fetch_array($result))
   echo "<td>" . $row['nutNumVotes'] . "</td>";
   echo "<td>" . $row['overallRating'] . "</td>";
   echo "<td>" . $row['overallNumVotes'] . "</td>";
+  echo "<td>" . $row['numFavourites'] . "</td>";
   echo "</tr>";
   }
 echo "</table></br></br>";

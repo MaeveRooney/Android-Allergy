@@ -63,12 +63,13 @@ public class RestaurantFunctions {
         JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
-        return json;
+        return new JSONObject();
     }
     
     public JSONObject addReviewToRestaurant(String id, String wheat, String wheatNum, String gluten, String glutenNum, String dairy, String dairyNum, String nut, String nutNum, String overall, String overallNum){
@@ -99,15 +100,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject addReviewToDB(String userID, String restaurantID, String wheat, String gluten, String dairy, String nut, String overall, String reviewText){
@@ -135,15 +137,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject getUserFavourites(String userID){
@@ -164,15 +167,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject addToFavourites(String userID, String restaurantID){
@@ -194,15 +198,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject removeFromFavourites(String userID, String restaurantID){
@@ -224,15 +229,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject increaseFavouriteCountOfRestaurant(String restaurantID){
@@ -298,15 +304,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
-			json = new JSONObject(response2);
+			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     public JSONObject decreaseFavouriteCountOfRestaurant(String restaurantID){
@@ -372,15 +379,16 @@ public class RestaurantFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
-			json = new JSONObject(response2);
+			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
 
  

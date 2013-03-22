@@ -50,14 +50,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return json;
+      
+		return new JSONObject();
     }
     
     /**
@@ -84,14 +86,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return json;
+      
+		return new JSONObject();
     }
  
     /**
@@ -124,15 +128,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     /**
@@ -162,15 +167,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     /**
@@ -195,15 +201,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
     /**
@@ -227,15 +234,16 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
     
  public JSONObject checkEmail(String email){
@@ -256,16 +264,51 @@ public class UserFunctions {
   			e3.printStackTrace();
   		}
   	  	
-        JSONObject json = null;
+  	  	JSONObject json = null;
 		try {
 			json = new JSONObject(response);
+			return json;
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
-        return json;
+      
+		return new JSONObject();
     }
+ 
+	 /**
+	  * function get users reviews
+	  * @param id
+	  * */
+	 public JSONObject getUsersReviews(String userID){
+	     // Building Parameters
+	     List<NameValuePair> params = new ArrayList<NameValuePair>();
+	     params.add(new BasicNameValuePair("tag", "getreviews"));
+	     params.add(new BasicNameValuePair("userID", userID));
+	     
+	     String response = null;
+		  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
+		  	try {
+		  		response = httpRequest.execute(loginURL).get();
+			} catch (InterruptedException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			} catch (ExecutionException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+		  	
+		  	JSONObject json = null;
+			try {
+				json = new JSONObject(response);
+				return json;
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+	        return new JSONObject();
+	 }
  
     /**
      * Function get Login status
