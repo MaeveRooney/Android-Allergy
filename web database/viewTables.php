@@ -17,6 +17,7 @@ echo "<table border='1'>
 <th>Username</th>
 <th>email</th>
 <th>password</th>
+<th>salt</th>
 <th>WheatAllergy</th>
 <th>GlutenAllergy</th>
 <th>DairyAllergy</th>
@@ -29,7 +30,8 @@ while($row = mysql_fetch_array($result))
   echo "<td>" . $row['id'] . "</td>";
   echo "<td>" . $row['username'] . "</td>";
   echo "<td>" . $row['email'] . "</td>";
-  echo "<td>" . $row['password'] . "</td>";
+  echo "<td>" . $row['encrypted_password'] . "</td>";
+  echo "<td>" . $row['salt'] . "</td>";
   echo "<td>" . $row['wheatAllergy'] . "</td>";
   echo "<td>" . $row['glutenAllergy'] . "</td>";
   echo "<td>" . $row['dairyAllergy'] . "</td>";

@@ -9,7 +9,9 @@ mysql_select_db("maeveroo_AllergyApp", $con);
 
 $return_arr = array();
 
-$result = mysql_query("SELECT * FROM restaurants");
+$restaurantID = (int) $_POST['id'];
+
+$result = mysql_query("SELECT * FROM restaurants WHERE id='$restaurantID'");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	$row_array['id']=$row['id'];
@@ -20,10 +22,16 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $row_array['GPSLatitude'] = $row['GPSLatitude'];
     $row_array['GPSLongitude'] = $row['GPSLongitude'];
     $row_array['wheatRating'] = $row['wheatRating'];
+    $row_array['wheatNumVotes'] = $row['wheatNumVotes'];
     $row_array['glutenRating'] = $row['glutenRating'];
+    $row_array['glutenNumVotes'] = $row['glutenNumVotes'];
     $row_array['dairyRating'] = $row['dairyRating'];
+    $row_array['dairyNumVotes'] = $row['dairyNumVotes'];
     $row_array['nutRating'] = $row['nutRating'];
+    $row_array['nutNumVotes'] = $row['nutNumVotes'];
     $row_array['overallRating'] = $row['overallRating'];
+    $row_array['overallNumVotes'] = $row['overallNumVotes'];
+    $row_array['numFavourites'] = $row['numFavourites'];
 
     array_push($return_arr,$row_array);
 }

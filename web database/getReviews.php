@@ -14,6 +14,7 @@ $restaurantID = (int) $_POST['id'];
 $result = mysql_query("SELECT * FROM reviews WHERE restaurantID='$restaurantID'");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	$row_array['id'] = $row['id'];
     $row_array['author'] = $row['authorID'];
     $row_array['restaurant'] = $row['restaurantID'];
     $row_array['text'] = $row['reviewText'];

@@ -9,16 +9,15 @@ mysql_select_db("maeveroo_AllergyApp", $con);
 
 $return_arr = array();
 
-$result = mysql_query("SELECT * FROM restaurants");
+$reviewID = (int) $_POST['id'];
+
+$result = mysql_query("SELECT * FROM reviews WHERE id='$reviewID'");
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	$row_array['id']=$row['id'];
-    $row_array['name'] = $row['name'];
-    $row_array['address'] = $row['address'];
-    $row_array['phone'] = $row['phone'];
-    $row_array['restaurantEmail'] = $row['restaurantEmail'];
-    $row_array['GPSLatitude'] = $row['GPSLatitude'];
-    $row_array['GPSLongitude'] = $row['GPSLongitude'];
+	$row_array['id'] = $row['id'];
+    $row_array['author'] = $row['authorID'];
+    $row_array['restaurant'] = $row['restaurantID'];
+    $row_array['text'] = $row['reviewText'];
     $row_array['wheatRating'] = $row['wheatRating'];
     $row_array['glutenRating'] = $row['glutenRating'];
     $row_array['dairyRating'] = $row['dairyRating'];

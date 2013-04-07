@@ -1,1 +1,80 @@
 [17-Feb-2013 11:20:15 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/maeveroo/public_html/getReviews.php on line 13
+[27-Feb-2013 10:22:00 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:25:33 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:25:42 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:27:18 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:27:27 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:29:54 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:30:02 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:35:11 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 10:35:23 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:40:23 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:45:30 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:45:58 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:47:33 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:47:48 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[27-Feb-2013 16:48:24 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneRestaurant.php on line 16
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_numrows() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 12
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 26
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_numrows() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 43
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 66
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_numrows() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 93
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 109
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_numrows() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 128
+[10-Mar-2013 16:22:46 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/viewTables.php on line 136
+[10-Mar-2013 16:36:34 America/Chicago] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/maeveroo/public_html/insertSampleData.php on line 73
+[10-Mar-2013 16:37:21 America/Chicago] PHP Parse error:  syntax error, unexpected T_PUBLIC in /home/maeveroo/public_html/insertSampleData.php on line 73
+[10-Mar-2013 16:43:00 America/Chicago] PHP Fatal error:  Using $this when not in object context in /home/maeveroo/public_html/insertSampleData.php on line 75
+[12-Mar-2013 19:00:01 America/Chicago] PHP Fatal error:  Class 'userFunctions' not found in /home/maeveroo/public_html/userGetAndPost.php on line 18
+[12-Mar-2013 19:05:00 America/Chicago] PHP Fatal error:  Class 'userFunctions' not found in /home/maeveroo/public_html/userGetAndPost.php on line 18
+[12-Mar-2013 19:09:45 America/Chicago] PHP Fatal error:  Class 'userFunctions' not found in /home/maeveroo/public_html/userGetAndPost.php on line 18
+[12-Mar-2013 19:57:10 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[12-Mar-2013 20:04:05 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[12-Mar-2013 20:05:58 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[12-Mar-2013 20:06:59 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[12-Mar-2013 20:09:56 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[12-Mar-2013 20:11:05 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /home/maeveroo/public_html/userGetAndPost.php on line 35
+[13-Mar-2013 18:47:24 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[13-Mar-2013 20:42:56 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 148
+[13-Mar-2013 20:55:42 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 148
+[13-Mar-2013 21:28:45 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[13-Mar-2013 21:28:58 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[13-Mar-2013 21:30:39 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[13-Mar-2013 21:36:02 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[13-Mar-2013 21:36:09 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[14-Mar-2013 09:14:00 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[14-Mar-2013 09:23:12 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[14-Mar-2013 10:25:33 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[14-Mar-2013 10:26:06 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[19-Mar-2013 23:28:53 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:35:35 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:40:16 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:41:19 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:42:02 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:45:50 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:51:48 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[19-Mar-2013 23:58:12 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:02:16 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:05:56 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:08:37 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:10:39 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:11:50 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:14:13 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:16:53 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 00:23:13 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 07:02:10 America/Chicago] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[20-Mar-2013 07:03:19 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 07:04:05 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 07:04:39 America/Chicago] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[20-Mar-2013 15:54:29 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, array given in /home/maeveroo/public_html/restaurantGetAndPost.php on line 99
+[20-Mar-2013 16:12:37 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, array given in /home/maeveroo/public_html/restaurantGetAndPost.php on line 99
+[20-Mar-2013 16:14:27 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, array given in /home/maeveroo/public_html/restaurantGetAndPost.php on line 100
+[20-Mar-2013 16:17:32 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, array given in /home/maeveroo/public_html/restaurantGetAndPost.php on line 100
+[21-Mar-2013 00:00:06 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/maeveroo/public_html/restaurantFunctions.php on line 160
+[21-Mar-2013 00:01:55 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/maeveroo/public_html/restaurantFunctions.php on line 160
+[21-Mar-2013 00:03:59 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/maeveroo/public_html/restaurantFunctions.php on line 160
+[21-Mar-2013 00:10:00 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/maeveroo/public_html/restaurantFunctions.php on line 160
+[21-Mar-2013 18:19:38 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/maeveroo/public_html/DB_Connect.php on line 22
+[21-Mar-2013 18:21:24 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/maeveroo/public_html/DB_Connect.php on line 22
+[21-Mar-2013 18:28:46 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/maeveroo/public_html/DB_Connect.php on line 22
+[22-Mar-2013 00:35:54 America/New_York] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'maeveroo_Maeve'@'localhost' (using password: YES) in /home/maeveroo/public_html/selectAllRestaurants.php on line 2
