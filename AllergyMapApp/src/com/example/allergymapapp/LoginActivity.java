@@ -1,21 +1,18 @@
 package com.example.allergymapapp;
 
-import java.util.HashMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
  
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
  
 public class LoginActivity extends Activity {
     Button btnLogin;
@@ -26,8 +23,6 @@ public class LoginActivity extends Activity {
  
     // JSON Response node names
     private static String KEY_SUCCESS = "success";
-    private static String KEY_ERROR = "error";
-    private static String KEY_ERROR_MSG = "error_msg";
     private static String KEY_UID = "id";
     private static String KEY_NAME = "username";
     private static String KEY_EMAIL = "email";

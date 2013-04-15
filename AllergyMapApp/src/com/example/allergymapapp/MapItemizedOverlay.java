@@ -11,7 +11,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,13 +20,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
 
@@ -194,8 +190,8 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 				  heartButton.setBackgroundResource(R.drawable.heart_off);
 				  // remove from favourites table in db
 				  RestaurantFunctions restaurantFunction = new RestaurantFunctions(mContext);
-			      JSONObject json = restaurantFunction.removeFromFavourites(userID, restaurantID);
-			      JSONObject json2 = restaurantFunction.decreaseFavouriteCountOfRestaurant(restaurantID);
+			      restaurantFunction.removeFromFavourites(userID, restaurantID);
+			      restaurantFunction.decreaseFavouriteCountOfRestaurant(restaurantID);
 				  // make marker red or green or neutral
 				  Drawable marker = null;
 				  if (goodBadNeutral.matches("good")){
@@ -217,8 +213,8 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 				heartButton.setBackgroundResource(R.drawable.heart_on);
 				// add to favourites table in db
 				RestaurantFunctions restaurantFunction = new RestaurantFunctions(mContext);
-		        JSONObject json = restaurantFunction.addToFavourites(userID, restaurantID);
-		        JSONObject json2 = restaurantFunction.increaseFavouriteCountOfRestaurant(restaurantID);
+		        restaurantFunction.addToFavourites(userID, restaurantID);
+		        restaurantFunction.increaseFavouriteCountOfRestaurant(restaurantID);
 				//change marker to heart marker
 				Drawable heartMarker = mContext.getResources().getDrawable(R.drawable.heart_marker);
 				//Set its bounds

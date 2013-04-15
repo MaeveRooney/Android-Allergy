@@ -3,14 +3,13 @@ package com.example.allergymapapp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
  
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -40,7 +39,6 @@ public class RegisterActivity extends Activity {
     // JSON Response node names
     private static String KEY_SUCCESS = "success";
     private static String KEY_ERROR = "error";
-    private static String KEY_ERROR_MSG = "error_msg";
     private static String KEY_UID = "id";
     private static String KEY_NAME = "username";
     private static String KEY_EMAIL = "email";

@@ -1,7 +1,6 @@
 package com.example.allergymapapp;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
  
@@ -291,11 +290,9 @@ public class RestaurantFunctions {
         params.add(new BasicNameValuePair("restaurantID", restaurantID));
         params.add(new BasicNameValuePair("numFavourites", numFavourites));
         
- 
-        String response2 = null;
   	  	TaskAsyncHttpPost httpRequest2 = new TaskAsyncHttpPost(params, mContext);
   	  	try {
-	  		response2 = httpRequest2.execute(restaurantURL).get();
+	  		httpRequest2.execute(restaurantURL).get();
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -366,11 +363,10 @@ public class RestaurantFunctions {
         params.add(new BasicNameValuePair("restaurantID", restaurantID));
         params.add(new BasicNameValuePair("numFavourites", numFavourites));
         
- 
-        String response2 = null;
+        
   	  	TaskAsyncHttpPost httpRequest2 = new TaskAsyncHttpPost(params, mContext);
   	  	try {
-	  		response2 = httpRequest2.execute(restaurantURL).get();
+  	  		httpRequest2.execute(restaurantURL).get();
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();

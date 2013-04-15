@@ -23,11 +23,13 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 
 public class ReviewRestaurant extends Activity{
 	final Context context = this;
@@ -38,7 +40,10 @@ public class ReviewRestaurant extends Activity{
 	String phone = null;
 	String email = null;
 	String reviewText = null;
+	String latitude;
+	String longitude;
 	String userID;
+	String password;
 	int longitudeInt = 0;
 	int latitudeInt = 0;
 	float wheatRating = 0;
@@ -55,7 +60,12 @@ public class ReviewRestaurant extends Activity{
 	String glutenNum;
 	String dairyNum;
 	String nutNum;
-	String overallNum;
+	String overallNum;	
+	String wheat;
+	String gluten;
+	String dairy;
+	String nut;
+	String overall;
 	String newAverageWheatRating;
 	String newAverageGlutenRating;
 	String newAverageDairyRating;
@@ -65,6 +75,7 @@ public class ReviewRestaurant extends Activity{
 	String userGluten;
 	String userNut;
 	String userDairy;
+	Boolean userIsLoggedIn = false;
 	
 	
 	// TODO if restaurant id passed as parameter. fill in necessary info
@@ -117,6 +128,9 @@ public class ReviewRestaurant extends Activity{
         }       
     
         //Get ratingbars and text objects from layout
+        TextView addressHeader = (TextView)findViewById(R.id.addressHeader);
+        TextView phoneHeader = (TextView)findViewById(R.id.phoneHeader);
+        TextView emailHeader = (TextView)findViewById(R.id.emailHeader);
         TextView wheatHeader = (TextView)findViewById(R.id.wheatHeader);
         TextView glutenHeader = (TextView)findViewById(R.id.glutenHeader);
         TextView dairyHeader = (TextView)findViewById(R.id.dairyHeader);
@@ -137,7 +151,7 @@ public class ReviewRestaurant extends Activity{
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
+				emailErrorMsg.setText("");
 				if (restaurantEmailEditText.getText().toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+") && s.length() > 0)
 	            {
 					emailErrorMsg.setText("");
@@ -261,6 +275,7 @@ public class ReviewRestaurant extends Activity{
 	    }
 	    
 	    if (restaurantID != 0){
+	    	//disable and hide locate on map button
 	    	locateRestaurant.setEnabled(false);
 	    	locateRestaurant.setVisibility(View.GONE);
 	    	String id = Integer.toString(restaurantID);
@@ -327,84 +342,46 @@ public class ReviewRestaurant extends Activity{
 	  	    // TODO if fields are null allow user to enter relevant info
 	  	    if (!name.matches("null")){
 	  	    	restaurantNameEditText.setText(name);
+	  	    	restaurantNameEditText.setEnabled(false);
 	  	    }
 	  	    if (!address.matches("null")){
-	  	    	restaurantAddressEditText.setText(address);
-	  	    }
+	  	    	//hide address header and field
+	  	    	restaurantAddressEditText.setVisibility(View.GONE);
+	  	    	addressHeader.setVisibility(View.GONE);
+	  	    } 
 	  	    if (!email.matches("null")) {
-	  	    	restaurantEmailEditText.setText(email);
+	  	    	//hide email header and field
+	  	    	restaurantEmailEditText.setVisibility(View.GONE);
+	  	    	emailHeader.setVisibility(View.GONE);
 	  	    }
 	  	    if (!phone.matches("null")){
-	  	    	restaurantPhoneEditText.setText(phone);
+	  	    	//hide phone header and field
+	  	    	restaurantPhoneEditText.setEnabled(false);
+	  	    	restaurantPhoneEditText.setVisibility(View.GONE);
+	  	    	phoneHeader.setVisibility(View.GONE);
 	  	    }
 	    }
           
 	}
 	
 	public void saveChanges(View v) {
-		String name = restaurantNameEditText.getText().toString();
-		String email = restaurantEmailEditText.getText().toString();
-		String phone = restaurantPhoneEditText.getText().toString();
-		String latitude = Integer.toString(latitudeInt);
-		String longitude = Integer.toString(longitudeInt);
-		String wheat = Float.toString(wheatRating);
-		String gluten = Float.toString(glutenRating);
-		String dairy = Float.toString(dairyRating);
-		String nut = Float.toString(nutRating);
-		String overall = Float.toString(overallRating);
-		String reviewText = restaurantReviewTextEditText.getText().toString();
-		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
- 
-		// set title
-		alertDialogBuilder.setTitle("Incomplete Review");
- 
-			// set dialog message
-		alertDialogBuilder
-			.setMessage("Click yes to exit!")
-			.setCancelable(false)
-			.setNegativeButton("Ok",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,int id) {
-					// if this button is clicked, just close
-					// the dialog box and do nothing
-						dialog.cancel();
-					}
-				});
- 
-		// create alert dialog
-		AlertDialog alertDialog = alertDialogBuilder.create();
-		
-		if (restaurantID != 0){
-			//alter restaurant with new review ratings
-			getCurrentRatingDataFromRestaurant(restaurantID);
-			RestaurantFunctions restaurantFunction = new RestaurantFunctions(ReviewRestaurant.this);
-	        JSONObject json = restaurantFunction.addReviewToRestaurant(Integer.toString(restaurantID), newAverageWheatRating, wheatNum, newAverageGlutenRating, glutenNum, newAverageDairyRating, dairyNum, newAverageNutRating, nutNum, newAverageOverallRating, overallNum);
+		name = restaurantNameEditText.getText().toString();
+		email = restaurantEmailEditText.getText().toString();
+		phone = restaurantPhoneEditText.getText().toString();
+		latitude = Integer.toString(latitudeInt);
+		longitude = Integer.toString(longitudeInt);
+		wheat = Float.toString(wheatRating);
+		gluten = Float.toString(glutenRating);
+		dairy = Float.toString(dairyRating);
+		nut = Float.toString(nutRating);
+		overall = Float.toString(overallRating);
+		reviewText = restaurantReviewTextEditText.getText().toString();
 
-		} else {
-			if (name.matches("")){
-				// show it
-				alertDialog.setMessage("Please enter restaurant name");
-				alertDialog.show();			
-			}		
-			if (longitude.matches("0")){
-				// show it
-				alertDialog.setMessage("Please locate restaurant on map");
-				alertDialog.show();			
-			}
-			if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+") && email.length() > 0){
-				alertDialog.setMessage("invalid email address");
-				alertDialog.show();
-			}
-			// add restaurant to table and get id back
-			restaurantID = addRestaurantToTable(name, email, latitude, longitude, phone, address, wheat, gluten, dairy, nut, overall);
-			
-		}
 		if (restaurantID != 0){
-			//post review to review table
-			RestaurantFunctions restaurantFunction = new RestaurantFunctions(ReviewRestaurant.this);
-	        JSONObject json = restaurantFunction.addReviewToDB(userID, Integer.toString(restaurantID), wheat, gluten, dairy, nut, overall, reviewText);	        
+			addReviewToRestaurant();
+		} else {
+			addRestaurant();
 		}
-		Intent menuIntent = new Intent(v.getContext(), MainMenu.class);
-        startActivityForResult(menuIntent, 0);
 	}
 	
 	
@@ -607,6 +584,160 @@ public class ReviewRestaurant extends Activity{
 	    }
   	    
   	    
+    }
+    
+    public void addReviewToRestaurant(){
+    	AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+    	alert2.setTitle("Enter Your Password:");
+    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+    	LinearLayout layout = new LinearLayout(ReviewRestaurant.this);
+    	layout.setOrientation(LinearLayout.VERTICAL);
+
+    	final EditText passwordText = new EditText(ReviewRestaurant.this);
+    	passwordText.setHint("password");
+    	
+    	layout.addView(passwordText);
+   	
+    	alert2.setView(layout);
+    	alert2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog, int whichButton) {
+				password = passwordText.getText().toString();
+				UserFunctions userFunction = new UserFunctions(ReviewRestaurant.this);
+		        JSONObject json = userFunction.checkPassword(userID, password);
+
+		        // check for login response
+		        try {
+		            if (json.getString("success") != null) {
+		                String res = json.getString("success");
+		                if(Integer.parseInt(res) == 1){
+		                	//alter restaurant with new review ratings
+		    				getCurrentRatingDataFromRestaurant(restaurantID);
+		    				RestaurantFunctions restaurantFunction = new RestaurantFunctions(ReviewRestaurant.this);
+		    		        restaurantFunction.addReviewToRestaurant(Integer.toString(restaurantID), newAverageWheatRating, wheatNum, newAverageGlutenRating, glutenNum, newAverageDairyRating, dairyNum, newAverageNutRating, nutNum, newAverageOverallRating, overallNum);
+		    		        restaurantFunction.addReviewToDB(userID, Integer.toString(restaurantID), wheat, gluten, dairy, nut, overall, reviewText);
+		    		        Intent menuIntent = new Intent(ReviewRestaurant.this, MainMenu.class);
+		    		        startActivityForResult(menuIntent, 0);
+		    		        Context context = getApplicationContext();
+		                	CharSequence text = "Review Added";
+		                	int duration = Toast.LENGTH_LONG;
+
+		                	Toast toast = Toast.makeText(context, text, duration);
+		                	toast.show();
+		                }else{
+		                	Context context = getApplicationContext();
+		                	CharSequence text = "incorrect password";
+		                	int duration = Toast.LENGTH_LONG;
+
+		                	Toast toast = Toast.makeText(context, text, duration);
+		                	toast.show();
+		                }
+		            }
+		        } catch (JSONException e) {
+		            e.printStackTrace();
+		        }
+    	   } 
+    	});
+    	alert2.setNegativeButton("Cancel",
+    	  new DialogInterface.OnClickListener() {
+    	   public void onClick(DialogInterface dialog,int whichButton) {
+    	     dialog.cancel();
+    	   }
+    	});
+    	AlertDialog alertDialog2 = alert2.create();
+    	alertDialog2.show();       
+    }
+    
+    public void addRestaurant(){
+    	AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+    	 
+		// set title
+		alertDialogBuilder.setTitle("Incomplete Review");
+ 
+			// set dialog message
+		alertDialogBuilder
+			.setMessage("Click yes to exit!")
+			.setCancelable(false)
+			.setNegativeButton("Ok",new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,int id) {
+					// if this button is clicked, just close
+					// the dialog box and do nothing
+						dialog.cancel();
+					}
+				});
+ 
+		// create alert dialog
+		AlertDialog alertDialog = alertDialogBuilder.create();
+		if (name.matches("")){
+			// show it
+			alertDialog.setMessage("Please enter restaurant name");
+			alertDialog.show();			
+		} else if (longitude.matches("0")){
+			// show it
+			alertDialog.setMessage("Please locate restaurant on map");
+			alertDialog.show();			
+		} else if (!email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+") && email.length() > 0){
+			alertDialog.setMessage("invalid email address");
+			alertDialog.show();
+		} else {
+	    	AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+	    	alert2.setTitle("Enter Your Password:");
+	    	this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+	
+	    	LinearLayout layout = new LinearLayout(ReviewRestaurant.this);
+	    	layout.setOrientation(LinearLayout.VERTICAL);
+	
+	    	final EditText passwordText = new EditText(ReviewRestaurant.this);
+	    	passwordText.setHint("password");
+	    	
+	    	layout.addView(passwordText);
+	   	
+	    	alert2.setView(layout);
+	    	alert2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+	    	   public void onClick(DialogInterface dialog, int whichButton) {
+					password = passwordText.getText().toString();
+					UserFunctions userFunction = new UserFunctions(ReviewRestaurant.this);
+			        JSONObject json = userFunction.checkPassword(userID, password);
+	
+			        // check for login response
+			        try {
+			            if (json.getString("success") != null) {
+			                String res = json.getString("success");
+			                if(Integer.parseInt(res) == 1){
+			                	restaurantID = addRestaurantToTable(name, email, latitude, longitude, phone, address, wheat, gluten, dairy, nut, overall);			
+			                	RestaurantFunctions restaurantFunction = new RestaurantFunctions(ReviewRestaurant.this);        
+			                	restaurantFunction.addReviewToDB(userID, Integer.toString(restaurantID), wheat, gluten, dairy, nut, overall, reviewText);
+			    		        Intent menuIntent = new Intent(ReviewRestaurant.this, MainMenu.class);
+			    		        startActivityForResult(menuIntent, 0);
+			    		        Context context = getApplicationContext();
+			                	CharSequence text = "Review Added";
+			                	int duration = Toast.LENGTH_LONG;
+	
+			                	Toast toast = Toast.makeText(context, text, duration);
+			                	toast.show();
+			                }else{
+			                	Context context = getApplicationContext();
+			                	CharSequence text = "incorrect password";
+			                	int duration = Toast.LENGTH_LONG;
+	
+			                	Toast toast = Toast.makeText(context, text, duration);
+			                	toast.show();
+			                }
+			            }
+			        } catch (JSONException e) {
+			            e.printStackTrace();
+			        }
+	    	   } 
+	    	});
+	    	alert2.setNegativeButton("Cancel",
+	    	  new DialogInterface.OnClickListener() {
+	    	   public void onClick(DialogInterface dialog,int whichButton) {
+	    	     dialog.cancel();
+	    	   }
+	    	});
+	    	AlertDialog alertDialog2 = alert2.create();
+	    	alertDialog2.show(); 
+		}
     }
 
 }

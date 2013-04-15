@@ -51,6 +51,7 @@
         
         <!--  Phone Label -->
         <TextView
+            android:id="@+id/phoneHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -62,10 +63,12 @@
             android:id="@+id/restaurantPhone"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dip"/>
+            android:textSize="20dip"
+            android:hint="phone number"/>
         
         <!--  Address Label -->
         <TextView
+            android:id="@+id/addressHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -77,11 +80,13 @@
             android:id="@+id/restaurantAddress"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dip"/>
+            android:textSize="20dip"
+            android:hint="Restaurant address"/>
 
         <!--  Email Label -->
 
         <TextView
+            android:id="@+id/emailHeader"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"

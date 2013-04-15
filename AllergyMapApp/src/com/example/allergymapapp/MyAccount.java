@@ -5,16 +5,13 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -354,7 +351,7 @@ public class MyAccount extends Activity{
     
     public void saveChanges(View v) {
     	UserFunctions userFunction = new UserFunctions(MyAccount.this);
-        JSONObject json = userFunction.changeUserDetails(userId, username, email, wheat, gluten, dairy, nut);
+        userFunction.changeUserDetails(userId, username, email, wheat, gluten, dairy, nut);
         //Clear all previous data in database
         DatabaseHandler db = new DatabaseHandler(MyAccount.this);
         userFunction.logoutUser(getApplicationContext());

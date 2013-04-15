@@ -9,10 +9,8 @@ import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Point;
@@ -21,18 +19,13 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
-import com.google.android.maps.MyLocationOverlay;
-import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
 public class GetLocationMap extends MapActivity {
@@ -53,10 +46,6 @@ public class GetLocationMap extends MapActivity {
 	private String bestProvider;
 	private int latitude;
 	private int longitude;
-	private GeoPoint mOldTopLeft;
-    private GeoPoint mOldCenter;
-    private GeoPoint mOldBottomRight;
-    private int mOldZoomLevel = -1;
 	private static MapViewListener mMapViewListener;
     public MapViewListener getMapViewListener() { return mMapViewListener; }
     public void setMapViewListener(MapViewListener value) { mMapViewListener = value; }
@@ -118,7 +107,7 @@ public class GetLocationMap extends MapActivity {
         latitude = markerGeoPoint.getLatitudeE6();
         longitude = markerGeoPoint.getLongitudeE6();
         
-        Drawable marker=getResources().getDrawable(R.drawable.green_marker);
+        Drawable marker=getResources().getDrawable(R.drawable.neutral_marker);
         
         marker.setBounds(0, 0, marker.getIntrinsicWidth(),
                                 marker.getIntrinsicHeight());
@@ -270,7 +259,7 @@ public class GetLocationMap extends MapActivity {
 	        	result=true;
 	      }
 	      else if (action==MotionEvent.ACTION_UP && inDrag!=null) {
-	    	  	Drawable marker=getResources().getDrawable(R.drawable.green_marker);
+	    	  	Drawable marker=getResources().getDrawable(R.drawable.neutral_marker);
 	    		
 			    marker.setBounds(0, 0, marker.getIntrinsicWidth(), marker.getIntrinsicHeight());
 

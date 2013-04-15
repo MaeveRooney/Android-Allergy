@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.maptestapp;
+package com.example.allergymapapp;
 
 public final class R {
     public static final class attr {
@@ -31,6 +31,7 @@ public final class R {
         public static final int LinearLayout02=0x7f070002;
         public static final int LinearLayout03=0x7f07000e;
         public static final int account_button=0x7f070014;
+        public static final int addressHeader=0x7f070038;
         public static final int back_button=0x7f070003;
         public static final int btnLinkToLoginScreen=0x7f07002b;
         public static final int btnLinkToRegisterScreen=0x7f070013;
@@ -40,13 +41,14 @@ public final class R {
         public static final int btnSaveChanges=0x7f070022;
         public static final int confirmPassword=0x7f070027;
         public static final int dairyCheck=0x7f070020;
-        public static final int dairyHeader=0x7f07003d;
+        public static final int dairyHeader=0x7f070040;
+        public static final int emailHeader=0x7f07003a;
         public static final int email_button=0x7f07001c;
         public static final int email_error=0x7f070025;
         public static final int favouriteText=0x7f070008;
         public static final int favourites_button=0x7f070017;
         public static final int glutenCheck=0x7f07001f;
-        public static final int glutenHeader=0x7f07003b;
+        public static final int glutenHeader=0x7f07003e;
         public static final int heartButton=0x7f070007;
         public static final int instructions=0x7f07000c;
         public static final int item_subtitle=0x7f070001;
@@ -60,32 +62,33 @@ public final class R {
         public static final int maptablayout=0x7f070009;
         public static final int mapview=0x7f07000a;
         public static final int menu_button=0x7f070004;
-        public static final int menu_settings=0x7f070043;
+        public static final int menu_settings=0x7f070046;
         public static final int my_reviews_button=0x7f070018;
         public static final int name_button=0x7f07001a;
         public static final int nutCheck=0x7f070021;
-        public static final int nutHeader=0x7f07003f;
+        public static final int nutHeader=0x7f070042;
         public static final int password_button=0x7f07001d;
         public static final int password_error=0x7f070028;
-        public static final int ratingbar_dairy=0x7f07003e;
-        public static final int ratingbar_gluten=0x7f07003c;
-        public static final int ratingbar_nut=0x7f070040;
-        public static final int ratingbar_overall=0x7f070042;
-        public static final int ratingbar_wheat=0x7f07003a;
+        public static final int phoneHeader=0x7f070036;
+        public static final int ratingbar_dairy=0x7f070041;
+        public static final int ratingbar_gluten=0x7f07003f;
+        public static final int ratingbar_nut=0x7f070043;
+        public static final int ratingbar_overall=0x7f070045;
+        public static final int ratingbar_wheat=0x7f07003d;
         public static final int registerEmail=0x7f07001b;
         public static final int registerName=0x7f070019;
         public static final int registerPassword=0x7f070026;
         public static final int register_error=0x7f070029;
-        public static final int restaurantAddress=0x7f070037;
-        public static final int restaurantEmail=0x7f070038;
+        public static final int restaurantAddress=0x7f070039;
+        public static final int restaurantEmail=0x7f07003b;
         public static final int restaurantName=0x7f070034;
-        public static final int restaurantPhone=0x7f070036;
+        public static final int restaurantPhone=0x7f070037;
         public static final int restaurant_address=0x7f07002d;
         public static final int restaurant_email=0x7f07002f;
         public static final int restaurant_image=0x7f07002e;
         public static final int restaurant_name=0x7f07002c;
         public static final int restaurant_phone=0x7f070030;
-        public static final int reviewText=0x7f070041;
+        public static final int reviewText=0x7f070044;
         public static final int review_button=0x7f070016;
         public static final int review_header=0x7f070032;
         public static final int review_info=0x7f070023;
@@ -94,7 +97,7 @@ public final class R {
         public static final int separator2=0x7f070033;
         public static final int username_error=0x7f070024;
         public static final int wheatCheck=0x7f07001e;
-        public static final int wheatHeader=0x7f070039;
+        public static final int wheatHeader=0x7f07003c;
     }
     public static final class layout {
         public static final int favourite_list_item=0x7f030000;

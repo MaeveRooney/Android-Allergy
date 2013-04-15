@@ -1,6 +1,6 @@
 package com.example.allergymapapp;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 
 import android.app.Activity;
 import android.content.Intent;

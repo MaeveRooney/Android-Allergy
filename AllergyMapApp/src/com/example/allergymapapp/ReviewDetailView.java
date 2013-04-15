@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 
 import android.app.Activity;
 import android.content.Intent;

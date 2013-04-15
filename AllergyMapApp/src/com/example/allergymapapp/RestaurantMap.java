@@ -8,17 +8,15 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.maptestapp.R;
+import com.example.allergymapapp.R;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -32,9 +30,7 @@ public class RestaurantMap extends MapActivity {
 	
 	private MapController myMapController;
 	private MapView mapView;
-	private GeoPoint Dublin = new GeoPoint(53345800, -6267100);
 	private MyLocationOverlay myLocationOverlay;
-	private GeoPoint mCurrentPoint;
 	String userID = "";
 	int isFavourite = 0;
 	JSONObject jsonFavourites;
@@ -151,7 +147,6 @@ public class RestaurantMap extends MapActivity {
 		    for (int i = 0; i<myArray.length(); i++) {
 		    	JSONObject e = null;
 		    	String id = "id";
-		    	String name = "name";
 		    	String Latitude = "GPSLatitude";
 		    	String Longitude = "GPSLongitude";
 		    	String wheatRating = "wheatRating";
@@ -167,11 +162,6 @@ public class RestaurantMap extends MapActivity {
 				}
 		    	try {
 					id = e.getString("id");
-				} catch (JSONException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}try {
-					name = e.getString("name");
 				} catch (JSONException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -335,16 +325,16 @@ public class RestaurantMap extends MapActivity {
 	}
    
    private String compareRatingsToUserAllergies(String wheatRating, String glutenRating, String dairyRating, String nutRating){
-	   if (userHasWheatAllergy && Float.parseFloat(wheatRating)<=2.5){
+	   if (userHasWheatAllergy && Float.parseFloat(wheatRating)<2.5){
 		   return "bad";
 	   }
-	   else if (userHasGlutenAllergy && Float.parseFloat(glutenRating)<=2.5){
+	   else if (userHasGlutenAllergy && Float.parseFloat(glutenRating)<2.5){
 		   return "bad";
 	   }
-	   else if (userHasDairyAllergy && Float.parseFloat(dairyRating)<=2.5){
+	   else if (userHasDairyAllergy && Float.parseFloat(dairyRating)<2.5){
 		   return "bad";
 	   }
-	   else if (userHasNutAllergy && Float.parseFloat(nutRating)<=2.5){
+	   else if (userHasNutAllergy && Float.parseFloat(nutRating)<2.5){
 		   return "bad";
 	   }
 	   return "good";
