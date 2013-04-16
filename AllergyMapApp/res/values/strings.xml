@@ -11,8 +11,10 @@
     <string name="home_button">Home</string>
     <string name="back_button">Back</string>
     <string name="account_button">My Account</string>
-    <string name="login_button">Login/Register</string>
-    <string name="review_button">Review Restaurant</string>
+    <string name="login_button">Login/Logout</string>
+    <string name="logout_button">Logout</string>
+    <string name="register_button">Register</string>
+    <string name="review_button">Add Restaurant</string>
     <string name="location_button">Save Location</string>
     <string name="favourites_button">My Favourites</string>
     <string name="my_reviews_button">My Reviews</string>

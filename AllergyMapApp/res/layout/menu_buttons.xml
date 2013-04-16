@@ -1,41 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:padding="2dp">
+	
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" 
+        android:layout_weight="0.25">
 
-    <Button
-        android:id="@+id/map_button"
-        style="@style/ButtonText"
-        android:text="@string/map_button" />
+	    <Button
+	        android:id="@+id/map_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/map_button"
+	        android:layout_weight="0.5" 
+	        android:layout_margin="2dp"/>
+	
+	    <Button
+	        android:id="@+id/list_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/list_button"
+	        android:layout_weight="0.5" 
+	        android:layout_margin="2dp"/>
+	    
+	</LinearLayout>
+	<LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" 
+        android:layout_weight="0.25">
+	    
+    	<Button
+	        android:id="@+id/account_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/account_button"
+	        android:layout_weight="0.5"  
+	        android:layout_margin="2dp"/>
+    
+	    <Button
+	        android:id="@+id/login_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/login_button" 
+	        android:layout_weight="0.5" 
+	        android:layout_margin="2dp"/>
+	   
+	</LinearLayout>
+	<LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.25"  >  
+         
+	    <Button
+	        android:id="@+id/register_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/register_button"
+	        android:layout_weight="0.5"  
+	        android:layout_margin="2dp"/>
+	    
+	    <Button
+	        android:id="@+id/review_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/review_button"
+	        android:layout_weight="0.5"  
+	        android:layout_margin="2dp"/>
 
-    <Button
-        android:id="@+id/list_button"
-        style="@style/ButtonText"
-        android:text="@string/list_button" />
-    <Button
-        android:id="@+id/account_button"
-        style="@style/ButtonText"
-        android:text="@string/account_button" />
-    
-    <Button
-        android:id="@+id/login_button"
-        style="@style/ButtonText"
-        android:text="@string/login_button" />
-    
-    <Button
-        android:id="@+id/review_button"
-        style="@style/ButtonText"
-        android:text="@string/review_button" />
-    
-    <Button
-        android:id="@+id/favourites_button"
-        style="@style/ButtonText"
-        android:text="@string/favourites_button" />
-    
-    <Button
-        android:id="@+id/my_reviews_button"
-        style="@style/ButtonText"
-        android:text="@string/my_reviews_button" />
+	</LinearLayout>
+	<LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_weight="0.25"  >
+	    	    
+	    <Button
+	        android:id="@+id/favourites_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/favourites_button"
+	        android:layout_weight="0.5"  
+	        android:layout_margin="2dp"/>
+        
+	    <Button
+	        android:id="@+id/my_reviews_button"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:text="@string/my_reviews_button" 
+	        android:layout_weight="0.5" 
+	        android:layout_margin="2dp"/>
+	</LinearLayout>
 
 </LinearLayout>

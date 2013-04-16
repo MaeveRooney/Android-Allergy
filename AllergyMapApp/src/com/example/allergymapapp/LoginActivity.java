@@ -4,22 +4,29 @@ import org.json.JSONException;
 import org.json.JSONObject;
  
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.allergymapapp.R;
  
 public class LoginActivity extends Activity {
     Button btnLogin;
     Button btnLinkToRegister;
-    EditText inputEmail;
+    EditText inputUsername;
     EditText inputPassword;
     TextView loginErrorMsg;
+    private DatabaseHandler db;
  
     // JSON Response node names
     private static String KEY_SUCCESS = "success";
@@ -37,9 +44,79 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
  
+        db = new DatabaseHandler(LoginActivity.this);
+        
+        //check to see if logged in already
+        if (db.getRowCount() != 0) {
+        	final AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
+        	
+        	dialog.setTitle("Logged In Already");
+      	  	dialog.setMessage("You are logged in. To log out click 'Log Out'");
+        	
+        	dialog.setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
+	      		  @Override
+	      		  public void onClick(DialogInterface arg0, int arg1) {
+	      			  db.resetTables();
+	      			Context context = getApplicationContext();
+                	CharSequence text = "Successful Logout";
+                	int duration = Toast.LENGTH_LONG;
+
+                	Toast toast = Toast.makeText(context, text, duration);
+                	toast.show();
+	      			  arg0.cancel();
+	      		  }});
+        	
+        	dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        		  @Override
+        		  public void onClick(DialogInterface arg0, int arg1) {
+        			  Intent intent = new Intent(LoginActivity.this, MainMenu.class);
+        			  LoginActivity.this.startActivity(intent);
+        		  }});
+        	dialog.show();
+        }
         // Importing all assets like buttons, text fields
-        inputEmail = (EditText) findViewById(R.id.loginEmail);
+        inputUsername = (EditText) findViewById(R.id.loginUsername);
+        inputUsername.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				loginErrorMsg.setText("");			
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				
+			}
+        });
         inputPassword = (EditText) findViewById(R.id.loginPassword);
+        inputPassword.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				loginErrorMsg.setText("");			
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				
+			}
+        });
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
         loginErrorMsg = (TextView) findViewById(R.id.login_error);
@@ -48,13 +125,13 @@ public class LoginActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
-                String email = inputEmail.getText().toString();
+                String username = inputUsername.getText().toString();
                 String password = inputPassword.getText().toString();
                 UserFunctions userFunction = new UserFunctions(LoginActivity.this);
-                JSONObject json = userFunction.loginUser(email, password);
+                JSONObject json = userFunction.loginUser(username, password);
                 
-                if (email.matches("")) {
-                	loginErrorMsg.setText("Enter email address");
+                if (username.matches("")) {
+                	loginErrorMsg.setText("Enter username");
                 	return;
                 }
                 if (password.matches("")) {
@@ -84,6 +161,14 @@ public class LoginActivity extends Activity {
  
                             // Close all views before launching Dashboard
                             mainMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            
+                            Context context = getApplicationContext();
+		                	CharSequence text = "Successful Login";
+		                	int duration = Toast.LENGTH_LONG;
+
+		                	Toast toast = Toast.makeText(context, text, duration);
+		                	toast.show();
+		                	
                             startActivity(mainMenu);
  
                             // Close Login Screen

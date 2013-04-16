@@ -95,7 +95,7 @@ public class ReviewRestaurant extends Activity{
         	final AlertDialog.Builder dialog = new AlertDialog.Builder(ReviewRestaurant.this);
         	
         	dialog.setTitle("No Account");
-      	  	dialog.setMessage("You must log in or register to write a review");
+      	  	dialog.setMessage("You must log in or register to write a review or add a restaurant.");
         	
         	dialog.setPositiveButton("Register", new DialogInterface.OnClickListener() {
 	      		  @Override
@@ -128,6 +128,7 @@ public class ReviewRestaurant extends Activity{
         }       
     
         //Get ratingbars and text objects from layout
+        TextView reviewHeader = (TextView)findViewById(R.id.reviewHeader);
         TextView addressHeader = (TextView)findViewById(R.id.addressHeader);
         TextView phoneHeader = (TextView)findViewById(R.id.phoneHeader);
         TextView emailHeader = (TextView)findViewById(R.id.emailHeader);
@@ -228,7 +229,7 @@ public class ReviewRestaurant extends Activity{
         
         // get parameters passed from GetLocationMap activity
 	    Bundle bundle = getIntent().getExtras();
-	    if (bundle != null){
+	    if (bundle != null){	    	
 	    	restaurantID = bundle.getInt("restaurantID");
 	    	latitudeInt = bundle.getInt("latitude");
 	    	longitudeInt = bundle.getInt("longitude");
@@ -276,6 +277,7 @@ public class ReviewRestaurant extends Activity{
 	    
 	    if (restaurantID != 0){
 	    	//disable and hide locate on map button
+	    	reviewHeader.setText("Review A Restaurant");
 	    	locateRestaurant.setEnabled(false);
 	    	locateRestaurant.setVisibility(View.GONE);
 	    	String id = Integer.toString(restaurantID);

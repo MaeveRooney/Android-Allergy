@@ -31,11 +31,11 @@ public class UserFunctions {
      * @param email
      * @param password
      * */
-    public JSONObject loginUser(String email, String password){
+    public JSONObject loginUser(String username, String password){
         // Building Parameters
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("tag", login_tag));
-        params.add(new BasicNameValuePair("email", email));
+        params.add(new BasicNameValuePair("username", username));
         params.add(new BasicNameValuePair("password", password));
         
         String response = null;

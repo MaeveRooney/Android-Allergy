@@ -39,6 +39,7 @@ public class MyAccount extends Activity{
     String nut;
     String username;
     String email;
+    AlertDialog.Builder dialog;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,7 @@ public class MyAccount extends Activity{
         
         //Check if user in sqlite database
         if (db.getRowCount() == 0) {
-        	final AlertDialog.Builder dialog = new AlertDialog.Builder(MyAccount.this);
-        	
+        	dialog = new AlertDialog.Builder(MyAccount.this);
         	dialog.setTitle("No Account");
       	  	dialog.setMessage("You must log in or register an account");
         	
@@ -84,6 +84,7 @@ public class MyAccount extends Activity{
         			  Intent intent = new Intent(MyAccount.this, MainMenu.class);
         			  MyAccount.this.startActivity(intent);
         		  }});
+        	dialog.show();
         }
         else {
 	        //Get user from database
@@ -389,5 +390,6 @@ public class MyAccount extends Activity{
 		}
 		
 	}
+    
 
 }

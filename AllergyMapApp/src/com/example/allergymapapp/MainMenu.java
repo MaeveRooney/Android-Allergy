@@ -14,6 +14,7 @@ public class MainMenu extends Activity implements OnClickListener {
     private Button listBtn;
     private Button accountBtn;
     private Button loginBtn;
+    private Button registerBtn;
     private Button reviewBtn;
     private Button myReviewsBtn;
     private Button favouritesBtn;
@@ -30,6 +31,8 @@ public class MainMenu extends Activity implements OnClickListener {
 		accountBtn.setOnClickListener(this);
 		loginBtn = (Button)findViewById(R.id.login_button);
 		loginBtn.setOnClickListener(this);
+		registerBtn = (Button)findViewById(R.id.register_button);
+		registerBtn.setOnClickListener(this);
 		reviewBtn = (Button)findViewById(R.id.review_button);
 		reviewBtn.setOnClickListener(this);
 		favouritesBtn = (Button)findViewById(R.id.favourites_button);
@@ -57,6 +60,10 @@ public class MainMenu extends Activity implements OnClickListener {
 	        case R.id.login_button:
 	        	Intent loginIntent = new Intent(view.getContext(), LoginActivity.class);
                 startActivityForResult(loginIntent, 0);
+	        break;
+	        case R.id.register_button:
+	        	Intent registerIntent = new Intent(view.getContext(), RegisterActivity.class);
+                startActivityForResult(registerIntent, 0);
 	        break;
 	        case R.id.review_button:
 	        	Intent reviewIntent = new Intent(view.getContext(), ReviewRestaurant.class);
