@@ -1,0 +1,12 @@
+<testcases>
+	  <case>
+		<url>http://maeverooney.x10.mx/selectAllRestaurants.php</url>
+		<method>GET</method>
+	  </case>
+	  <case>
+		  <url>http://maeverooney.x10.mx/userGetAndPost.php</url>
+		  <method>POST</method>
+		  <body><![CDATA[tag=login&username=johnsmith&password=secret1]]></body>
+		  <add_header>Content-type: application/x-www-form-urlencoded</add_header>
+	  </case>
+</testcases>
