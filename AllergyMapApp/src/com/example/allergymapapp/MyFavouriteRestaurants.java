@@ -351,6 +351,14 @@ public class MyFavouriteRestaurants extends ListActivity {
 		  restIDStr = restID+"";
 		  final int restaurantID = restID;
 		  
+		  LayoutInflater layout = LayoutInflater.from(MyFavouriteRestaurants.this);
+		  View buttonView = layout.inflate(R.layout.heart_button, null);
+		  favouriteText = (TextView) buttonView.findViewById(R.id.favouriteText);
+		  heartButton = (Button) buttonView.findViewById(R.id.heartButton);
+		  heartButton.setOnClickListener(addToFavourites);
+		  RatingBar ratingBar = (RatingBar) buttonView.findViewById(R.id.ratingbar_Indicator);
+		  dialog.setView(buttonView);
+		  
 	      DatabaseHandler db = new DatabaseHandler(MyFavouriteRestaurants.this);
 	      //Check if user in sqlite database
 	      if (db.getRowCount() != 0) {
@@ -360,20 +368,19 @@ public class MyFavouriteRestaurants extends ListActivity {
 		      //if restaurant in favourites change isFavourite to true
 		      isFavourite = CheckIfRestaurantInFavourites(restID, userID);
 		      // if user is logged in show favourite button
-			  LayoutInflater layout = LayoutInflater.from(MyFavouriteRestaurants.this);
-			  View buttonView = layout.inflate(R.layout.heart_button, null);
-			  favouriteText = (TextView) buttonView.findViewById(R.id.favouriteText);
-			  heartButton = (Button) buttonView.findViewById(R.id.heartButton);
 			  heartButton.setOnClickListener(addToFavourites);	
 			  if (isFavourite){
 				  favouriteText.setText("tap heart to remove from favourites");
 				  heartButton.setBackgroundResource(R.drawable.heart_on);
 			  }
 			  dialog.setView(buttonView);  
+	      } else {
+	    	  heartButton.setVisibility(View.GONE);
+			  favouriteText.setVisibility(View.GONE);
 	      }
 		  
 		  dialog.setTitle(name);
-		  dialog.setMessage(rating+" stars");
+		  ratingBar.setRating(Float.parseFloat(rating));
 		  
 		  dialog.setPositiveButton("More Info", new DialogInterface.OnClickListener() {
 			  @Override
