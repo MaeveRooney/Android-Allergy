@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -22,11 +21,11 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 class TaskAsyncHttpPost extends AsyncTask<String, Void, String> {
 	private List<NameValuePair> nameValuePairs = null;
-	private Context context;
+	//private Context context;
 	
 	public TaskAsyncHttpPost(List<NameValuePair> nameValuePairs, Context context){
 		this.nameValuePairs = nameValuePairs;
-		this.context = context;
+		//this.context = context;
 	}
 
 	@Override

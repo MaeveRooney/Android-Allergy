@@ -67,6 +67,7 @@ public class MyReviews extends ListActivity {
         			  Intent intent = new Intent(MyReviews.this, MainMenu.class);
         			  MyReviews.this.startActivity(intent);
         		  }});
+        	dialog.show();
         }
         else {
 	        //Get user from database

@@ -1,11 +1,15 @@
 package com.example.allergymapapp.test;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+import android.test.suitebuilder.TestSuiteBuilder;
 
-@RunWith(Suite.class)
-@SuiteClasses({ MyAccountTest.class, SomeTest.class })
-public class AllTests {
 
+/**
+ * A test suite containing all tests for my application.
+ */
+public class AllTests extends TestSuite {
+    public static Test suite() {
+        return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();
+    }
 }

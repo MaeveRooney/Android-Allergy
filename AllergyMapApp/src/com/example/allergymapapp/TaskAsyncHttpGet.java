@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -20,10 +19,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 class TaskAsyncHttpGet extends AsyncTask<String, Void, String> {
-	private Context context;
+	//private Context context;
 	
 	public TaskAsyncHttpGet(Context context){
-		this.context = context;
+		//this.context = context;
 	}
 	
 	@Override

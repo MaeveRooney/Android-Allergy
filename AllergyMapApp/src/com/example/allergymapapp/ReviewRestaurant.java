@@ -33,6 +33,7 @@ import com.example.allergymapapp.R;
 
 public class ReviewRestaurant extends Activity{
 	final Context context = this;
+	boolean isUser = false;
 	int restaurantID= 0;
 	EditText restaurantAddressEditText;
 	String address = null;
@@ -56,21 +57,21 @@ public class ReviewRestaurant extends Activity{
 	EditText restaurantEmailEditText;
 	EditText restaurantReviewTextEditText;
 	Button locateRestaurant;
-	String wheatNum;
-	String glutenNum;
-	String dairyNum;
-	String nutNum;
-	String overallNum;	
-	String wheat;
-	String gluten;
-	String dairy;
-	String nut;
-	String overall;
-	String newAverageWheatRating;
-	String newAverageGlutenRating;
-	String newAverageDairyRating;
-	String newAverageNutRating;
-	String newAverageOverallRating;
+	String wheatNum = "0";
+	String glutenNum = "0";
+	String dairyNum = "0";
+	String nutNum = "0";
+	String overallNum = "0";	
+	String wheat ="0.0";
+	String gluten ="0.0";
+	String dairy ="0.0";
+	String nut ="0.0";
+	String overall ="0.0";
+	String newAverageWheatRating ="0.0";
+	String newAverageGlutenRating ="0.0";
+	String newAverageDairyRating ="0.0";
+	String newAverageNutRating ="0.0";
+	String newAverageOverallRating ="0.0";
 	String userWheat;
 	String userGluten;
 	String userNut;
@@ -116,9 +117,11 @@ public class ReviewRestaurant extends Activity{
         			  Intent intent = new Intent(ReviewRestaurant.this, MainMenu.class);
         			  ReviewRestaurant.this.startActivity(intent);
         		  }});
+        	dialog.show();
         }
         else {
 	        //Get user from database
+        	isUser = true;
 	        HashMap<String,String> user = db.getUserDetails();
 	        userID = (String)user.get("uid");
 	        userWheat = (String)user.get("wheat");
@@ -209,22 +212,24 @@ public class ReviewRestaurant extends Activity{
     			}
     		});
         
-        //Remove irrelevant ratingbars and headings for user        
-        if (userWheat.equals("0")){
-        	wheatHeader.setVisibility(View.GONE);
-        	wheatRatingBar.setVisibility(View.GONE);
-        }
-        if (userGluten.equals("0")){
-        	glutenHeader.setVisibility(View.GONE);
-        	glutenRatingBar.setVisibility(View.GONE);
-        }
-        if (userDairy.equals("0")){
-        	dairyHeader.setVisibility(View.GONE);
-        	dairyRatingBar.setVisibility(View.GONE);
-        }
-        if (userNut.equals("0")){
-        	nutHeader.setVisibility(View.GONE);
-        	nutRatingBar.setVisibility(View.GONE);
+        if (isUser) {
+	        //Remove irrelevant ratingbars and headings for user        
+	        if (userWheat.equals("0")){
+	        	wheatHeader.setVisibility(View.GONE);
+	        	wheatRatingBar.setVisibility(View.GONE);
+	        }
+	        if (userGluten.equals("0")){
+	        	glutenHeader.setVisibility(View.GONE);
+	        	glutenRatingBar.setVisibility(View.GONE);
+	        }
+	        if (userDairy.equals("0")){
+	        	dairyHeader.setVisibility(View.GONE);
+	        	dairyRatingBar.setVisibility(View.GONE);
+	        }
+	        if (userNut.equals("0")){
+	        	nutHeader.setVisibility(View.GONE);
+	        	nutRatingBar.setVisibility(View.GONE);
+	        }
         }
         
         // get parameters passed from GetLocationMap activity
@@ -551,6 +556,9 @@ public class ReviewRestaurant extends Activity{
 	    	float newAverage = newTotal/newNumVotes;
 	    	wheatNum = Integer.toString(newNumVotes);
 	    	newAverageWheatRating = Float.toString(newAverage);
+	    } else {
+	    	wheatNum = currentWheatNumVotes+"";	
+	    	newAverageWheatRating = currentWheatRating+"";
 	    }
   	    if (glutenRating > 0){
 	    	float n = currentGlutenNumVotes*currentGlutenRating;
@@ -559,6 +567,9 @@ public class ReviewRestaurant extends Activity{
 	    	float newAverage = newTotal/newNumVotes;
 	    	glutenNum = Integer.toString(newNumVotes);
 	    	newAverageGlutenRating = Float.toString(newAverage);
+	    } else {
+	    	glutenNum = currentGlutenNumVotes+"";
+	    	newAverageGlutenRating = currentGlutenRating+"";
 	    }
   	    if (dairyRating > 0){
 	    	float n = currentDairyNumVotes*currentDairyRating;
@@ -567,6 +578,9 @@ public class ReviewRestaurant extends Activity{
 	    	float newAverage = newTotal/newNumVotes;
 	    	dairyNum = Integer.toString(newNumVotes);
 	    	newAverageDairyRating = Float.toString(newAverage);
+	    } else {
+	    	dairyNum = currentDairyNumVotes+"";
+	    	newAverageDairyRating = currentDairyRating+"";
 	    }
   	    if (nutRating > 0){
 	    	float n = currentNutNumVotes*currentNutRating;
@@ -575,14 +589,20 @@ public class ReviewRestaurant extends Activity{
 	    	float newAverage = newTotal/newNumVotes;
 	    	nutNum = Integer.toString(newNumVotes);
 	    	newAverageNutRating = Float.toString(newAverage);
+	    } else {
+	    	nutNum = currentNutNumVotes+"";	
+	    	newAverageNutRating = currentNutRating+"";
 	    }
   	    if (overallRating > 0){
 	    	float n = currentOverallNumVotes*currentOverallRating;
 	    	int newNumVotes = currentOverallNumVotes + 1;
-	    	float newTotal = n + dairyRating;
+	    	float newTotal = n + overallRating;
 	    	float newAverage = newTotal/newNumVotes;
 	    	overallNum = Integer.toString(newNumVotes);
 	    	newAverageOverallRating = Float.toString(newAverage);
+	    } else {
+	    	overallNum = currentOverallNumVotes+"";	
+	    	newAverageOverallRating = currentOverallRating+"";
 	    }
   	    
   	    

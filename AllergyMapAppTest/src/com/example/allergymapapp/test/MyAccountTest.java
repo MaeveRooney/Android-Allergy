@@ -1,7 +1,7 @@
 package com.example.allergymapapp.test;
 
-import static org.junit.Assert.*;
-
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.example.allergymapapp.DatabaseHandler;
@@ -11,7 +11,6 @@ import com.jayway.android.robotium.solo.Solo;
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -37,13 +36,20 @@ public class MyAccountTest extends ActivityInstrumentationTestCase2<MyAccount> {
 	}
 
 	@Override
-	  protected void setUp() throws Exception {
+	@Before
+	protected void setUp() throws Exception {
+		
+		mActivity = getActivity();
+		
+		db = new DatabaseHandler(mActivity); 
+        db.resetTables();
+        db.addUser("john", "john@john.com", "1", "1","0","1","0");
 		
 		solo = new Solo(getInstrumentation(), getActivity());
 
 	    setActivityInitialTouchMode(false);
 
-	    mActivity = getActivity();
+	    
 
 	    usernameText = (TextView) mActivity.findViewById(R.id.registerName);
         emailText = (TextView) mActivity.findViewById(R.id.registerEmail);
@@ -55,22 +61,20 @@ public class MyAccountTest extends ActivityInstrumentationTestCase2<MyAccount> {
         glutenCheck = (CheckBox) mActivity.findViewById(R.id.glutenCheck);
         dairyCheck = (CheckBox) mActivity.findViewById(R.id.dairyCheck);
         nutCheck = (CheckBox) mActivity.findViewById(R.id.nutCheck);
-        
-        db = new DatabaseHandler(mActivity);
-        //logs out user
-	    db.resetTables();
-        
+
 	  } // end of setUp() method definition
 	
 	@Override
+	@After
 	public void tearDown() throws Exception {
+		
 		try {
 			this.solo.finalize();
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		this.mActivity.finish();
-		super.tearDown();
+		super.tearDown();		
 	} // end of tearDown()
 
 	@Test
@@ -79,21 +83,24 @@ public class MyAccountTest extends ActivityInstrumentationTestCase2<MyAccount> {
 		solo.assertCurrentActivity("wrong activiy", MyAccount.class);
 	}
 	
+	
 	@Test
-	public void testUserNotLoggedIn() {
-	    //logs out user
-	    db.resetTables();
-	    getInstrumentation().waitForIdleSync();
-	    assertTrue("login dialog is not present!", solo.searchText("No Account"));
+	public void testUserIsLoggedIn() {
+		getInstrumentation().waitForIdleSync();
+		assertTrue("user is not present", solo.searchText("john"));
 	}
 	
-	@UiThreadTest
-	public void testChangePassword() {
-		db.resetTables();
-		db.addUser("john", "john@john.com", "1", "1","0","1","0");
+	@Test
+	public void testChangePasswordDialogShows() throws Throwable {
 		getInstrumentation().waitForIdleSync();
-		btnPassword.performClick();
+		runTestOnUiThread(new Runnable() {
+		    @Override
+		    public void run() {
+		    	btnPassword.performClick();
+		    }
+		  });		
 		assertTrue("password dialog is not present", solo.searchText("Change Password:"));
 	}
+	
 
 }

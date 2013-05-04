@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ReviewDetailView extends Activity{
@@ -28,9 +29,17 @@ public class ReviewDetailView extends Activity{
         setContentView(R.layout.read_review_view);
         Bundle bundle = getIntent().getExtras();
     	int reviewID = bundle.getInt("reviewID");
+    	String restaurantName = (String) bundle.getCharSequence("restaurantName");
     	String id = Integer.toString(reviewID);
     	
-    	TextView reviewText=(TextView)findViewById(R.id.review_info);
+    	TextView reviewHeader=(TextView)findViewById(R.id.review_header);
+    	TextView authorHeader=(TextView)findViewById(R.id.review_author);
+    	TextView reviewText=(TextView)findViewById(R.id.review_text);
+    	RatingBar rate=(RatingBar)findViewById(R.id.ratingbar_Indicator);
+    	RatingBar wheatrate=(RatingBar)findViewById(R.id.ratingbar_Indicator_wheat);
+    	RatingBar glutenrate=(RatingBar)findViewById(R.id.ratingbar_Indicator_gluten);
+    	RatingBar dairyrate=(RatingBar)findViewById(R.id.ratingbar_Indicator_dairy);
+    	RatingBar nutrate=(RatingBar)findViewById(R.id.ratingbar_Indicator_nut);
     	  
   	  	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
         nameValuePairs.add(new BasicNameValuePair("id", id));
@@ -47,7 +56,6 @@ public class ReviewDetailView extends Activity{
   			e3.printStackTrace();
   		}
   	    if (response !=null){
-  	    	reviewText.setText(response);
   		    JSONArray myArray = null;
   		    JSONObject reviewObject = null;
   			try {
@@ -61,10 +69,22 @@ public class ReviewDetailView extends Activity{
   				e.printStackTrace();
   			}
   	    	if (reviewObject != null){
-  	    		String id2 = null;
   	    		try {
-					id2 = reviewObject.getString("restaurant");
-					restaurantID = Integer.parseInt(id2);
+					reviewHeader.setText("Review For: " + restaurantName);
+					String authorName = reviewObject.getString("username");
+					authorHeader.setText("Author: " + authorName);
+					String review = reviewObject.getString("text");
+					reviewText.setText(review);
+					float rating = Float.parseFloat(reviewObject.getString("overallRating"));
+					float wheatrating = Float.parseFloat(reviewObject.getString("wheatRating"));
+					float glutenrating = Float.parseFloat(reviewObject.getString("glutenRating"));
+					float dairyrating = Float.parseFloat(reviewObject.getString("dairyRating"));
+					float nutrating = Float.parseFloat(reviewObject.getString("nutRating"));
+					rate.setRating(rating);
+					wheatrate.setRating(wheatrating);
+					glutenrate.setRating(glutenrating);
+					dairyrate.setRating(dairyrating);
+					nutrate.setRating(nutrating);
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

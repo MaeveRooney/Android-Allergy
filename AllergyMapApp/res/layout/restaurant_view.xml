@@ -58,6 +58,30 @@
             android:padding="6dip"/>
 	</LinearLayout>
 	
+	<LinearLayout
+	    android:id="@+id/LinearLayout03"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center_vertical" >
+
+        	<TextView
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:padding="6dip"
+        	    android:text="Overall Rating: "
+        	    android:textSize="12sp" />
+
+        	<RatingBar
+        	    android:id="@+id/ratingbar_Indicator"
+        	    style="?android:attr/ratingBarStyleSmall"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:numStars="5"
+        	    android:stepSize="0.5"
+        	    android:textIsSelectable="false" />
+
+	</LinearLayout>
+	
 	<View android:id="@+id/separator1" 
 		 android:background="#ffffff" 
 		 android:layout_width = "fill_parent"
@@ -85,7 +109,7 @@
 	</ListView>
 
 	<LinearLayout 
-    android:id="@+id/LinearLayout03" 
+    android:id="@+id/LinearLayout04" 
     android:layout_height="wrap_content" 
     android:layout_width="fill_parent">
     	<Button 

@@ -1,21 +1,205 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:fillViewport="true"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/review_info"
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1.00"
-        android:padding="18dip"
-        android:text="@string/restaurant_name"
-        android:textSize="18sp" />
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@+id/LinearLayout02"
+    android:orientation="vertical" >
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="446dp"
+	    android:orientation="vertical" >
+	
+	    <TextView
+	        android:id="@+id/review_header"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="18dip"
+	        android:textSize="20sp" />
+	    
+	    <TextView
+	        android:id="@+id/review_author"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="18dip"
+	        android:textSize="18sp" />
+	    
+	    <LinearLayout
+	        android:id="@+id/OverallRatingRow"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_vertical"
+	        android:orientation="horizontal"
+	        android:padding="10dip" >
+	
+			<TextView
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:padding="2dp"
+			    android:text="Overall Rating:"
+			    android:textIsSelectable="false"
+			    android:textSize="16sp" />
+	
+		    <RatingBar
+		        android:id="@+id/ratingbar_Indicator"
+		        style="?android:attr/ratingBarStyleIndicator"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="right"
+		        android:isIndicator="true"
+		        android:numStars="5"
+		        android:stepSize="0.5"
+		        android:textIsSelectable="false" />
+	
+		    </LinearLayout>
+	
+		 <LinearLayout
+		     android:id="@+id/wheatRow"
+		     android:layout_width="match_parent"
+		     android:layout_height="wrap_content"
+		     android:orientation="horizontal"
+		     android:gravity="center_vertical"
+		     android:padding="10dip" >
+	
+			<TextView
+			    android:layout_width="108dp"
+			    android:layout_height="wrap_content"
+			    android:padding="2dp"
+			    android:text="Wheat Rating:"
+			    android:textIsSelectable="false"
+			    android:textSize="14sp" />
+
+			<RatingBar
+			    android:id="@+id/ratingbar_Indicator_wheat"
+			    style="?android:attr/ratingBarStyleIndicator"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:gravity="center_vertical"
+			    android:isIndicator="true"
+			    android:numStars="5"
+			    android:stepSize="0.5"
+			    android:textIsSelectable="false" />
+	
+		    </LinearLayout>
+
+		 <LinearLayout
+		     android:id="@+id/glutenRow"
+		     android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     android:orientation="horizontal"
+		     android:gravity="center_vertical"
+		     android:padding="10dip" >
+
+		     <TextView
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:layout_weight="0.55"
+		         android:padding="2dp"
+		         android:text="Gluten Rating:"
+		         android:textIsSelectable="false"
+		         android:textSize="14sp" />
+
+		     <RatingBar
+		         android:id="@+id/ratingbar_Indicator_gluten"
+		         style="?android:attr/ratingBarStyleIndicator"
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:gravity="center_vertical"
+		         android:isIndicator="true"
+		         android:numStars="5"
+		         android:stepSize="0.5"
+		         android:textIsSelectable="false" />
+		 </LinearLayout>
+
+		 <LinearLayout
+		     android:id="@+id/dairyRow"
+		     android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     android:orientation="horizontal"
+		     android:gravity="center_vertical"
+		     android:padding="10dip" >
+
+		     <TextView
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:layout_weight="0.56"
+		         android:padding="2dp"
+		         android:text="Dairy Rating:"
+		         android:textIsSelectable="false"
+		         android:textSize="14sp" />
+
+		     <RatingBar
+		         android:id="@+id/ratingbar_Indicator_dairy"
+		         style="?android:attr/ratingBarStyleIndicator"
+		         android:layout_width="wrap_content"
+		         android:layout_height="wrap_content"
+		         android:gravity="center_vertical"
+		         android:isIndicator="true"
+		         android:numStars="5"
+		         android:stepSize="0.5"
+		         android:textIsSelectable="false" />
+		 </LinearLayout>
+	
+		 	 <LinearLayout
+		 	     android:id="@+id/nutRow"
+		 	     android:layout_width="fill_parent"
+		 	     android:layout_height="wrap_content"
+		 	     android:orientation="horizontal"
+		 	     android:gravity="center_vertical"
+		 	     android:padding="10dip" >
+
+		 	     <TextView
+		 	         android:layout_width="wrap_content"
+		 	         android:layout_height="wrap_content"
+		 	         android:layout_weight="0.54"
+		 	         android:padding="2dp"
+		 	         android:text="Nut Rating:"
+		 	         android:textIsSelectable="false"
+		 	         android:textSize="14sp" />
+
+		 	     <RatingBar
+		 	         android:id="@+id/ratingbar_Indicator_nut"
+		 	         style="?android:attr/ratingBarStyleIndicator"
+		 	         android:layout_width="wrap_content"
+		 	         android:layout_height="wrap_content"
+		 	         android:gravity="center_vertical"
+		 	         android:isIndicator="true"
+		 	         android:numStars="5"
+		 	         android:stepSize="0.5"
+		 	         android:textIsSelectable="false" />
+		 	 </LinearLayout>
+		 	 <TextView
+		 	         android:layout_width="wrap_content"
+		 	         android:layout_height="wrap_content"
+		 	         android:layout_weight="0.54"
+		 	         android:padding="2dp"
+		 	         android:text="Review:"
+		 	         android:textIsSelectable="false"
+		 	         android:textSize="18sp" />	
+		 	 <TextView
+		 	     	 android:id="@+id/review_text"
+		 	         android:layout_width="wrap_content"
+		 	         android:layout_height="wrap_content"
+		 	         android:layout_weight="0.54"
+		 	         android:padding="2dp"
+		 	         android:text="Nut Rating:"
+		 	         android:textIsSelectable="false"
+		 	         android:textSize="14sp" />    
+	</LinearLayout>
+</ScrollView>
+		    
 
     <LinearLayout
         android:id="@+id/LinearLayout02"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/back_button"
@@ -53,5 +237,4 @@
             android:text="@string/list_view" >
         </Button>
     </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

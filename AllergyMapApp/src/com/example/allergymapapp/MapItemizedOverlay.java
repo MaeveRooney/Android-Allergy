@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.allergymapapp.R;
@@ -76,6 +77,16 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	  // red, green or heart shaped
 	  String name = "";
 	  String rating = "";
+	  RatingBar ratingBar = null;
+	  
+
+	  LayoutInflater layout = LayoutInflater.from(mContext);
+	  View buttonView = layout.inflate(R.layout.heart_button, null);
+	  favouriteText = (TextView) buttonView.findViewById(R.id.favouriteText);
+	  heartButton = (Button) buttonView.findViewById(R.id.heartButton);
+	  heartButton.setOnClickListener(addToFavourites);
+	  ratingBar = (RatingBar) buttonView.findViewById(R.id.ratingbar_Indicator);
+	  dialog.setView(buttonView);
 	  
       DatabaseHandler db = new DatabaseHandler(mContext);
       //Check if user in sqlite database
@@ -86,11 +97,7 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	      //if restaurant in favourites change isFavourite to 1
 	      checkIfRestaurantInFavourites();
 	      // if user is logged in show favourite button
-		  LayoutInflater layout = LayoutInflater.from(mContext);
-		  View buttonView = layout.inflate(R.layout.heart_button, null);
-		  favouriteText = (TextView) buttonView.findViewById(R.id.favouriteText);
-		  heartButton = (Button) buttonView.findViewById(R.id.heartButton);
-		  heartButton.setOnClickListener(addToFavourites);	
+		  	
 		  if (isFavourite == 1){
 			  favouriteText.setText("tap heart to remove from favourites");
 			  heartButton.setBackgroundResource(R.drawable.heart_on);
@@ -100,10 +107,11 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 			  heartMarker.setBounds(0 - heartMarker.getIntrinsicWidth() / 2, 0 - heartMarker.getIntrinsicHeight(), 
 					  heartMarker.getIntrinsicWidth() / 2, 0);//Set the new marker
 			  thisItem.setMarker(heartMarker);
-		  }
-		  dialog.setView(buttonView);  
+		  }  
+      } else {
+    	  heartButton.setVisibility(View.GONE);
+		  favouriteText.setVisibility(View.GONE);
       }
-	  
 	  List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
       nameValuePairs.add(new BasicNameValuePair("id", restaurantID));
 	  
@@ -148,7 +156,7 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
       }
 	    
 	  dialog.setTitle(name);
-	  dialog.setMessage(rating+" stars");
+	  ratingBar.setRating(Float.parseFloat(rating));
 	  
 	  dialog.setPositiveButton("More Info", new DialogInterface.OnClickListener() {
 		  @Override
@@ -175,7 +183,6 @@ public class MapItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 	  dialog.setNegativeButton("Back", new DialogInterface.OnClickListener() {		  
 		  @Override     
 		  public void onClick(DialogInterface arg0, int arg1) {
-			  
 			  arg0.cancel();
 		  }});
 	  dialog.show();

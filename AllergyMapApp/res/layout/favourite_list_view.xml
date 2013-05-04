@@ -1,7 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">	
+    android:layout_height="fill_parent">
+    
+    <TextView
+        android:id="@+id/restaurant_name" 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="My Favourite Restaurants"  
+        android:padding="6dip"/>	
 
     <ListView
 	 	android:id="@id/android:list"
