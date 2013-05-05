@@ -79,6 +79,8 @@ public class ListRestaurants extends ListActivity {
         
 	    try {
 			response = new TaskAsyncHttpGet(ListRestaurants.this).execute("http://maeverooney.x10.mx/selectAllRestaurants.php").get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
 		} catch (InterruptedException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();

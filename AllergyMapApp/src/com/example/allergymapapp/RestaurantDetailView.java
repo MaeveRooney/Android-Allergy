@@ -1,5 +1,8 @@
 package com.example.allergymapapp;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,10 +15,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.allergymapapp.R;
-import com.example.allergymapapp.ListRestaurants.ViewHolder;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +27,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -44,6 +47,8 @@ public class RestaurantDetailView extends ListActivity {
   	  	String phone = "Phone: ";
   	  	String address = "Address:\r\n";
   	  	String email = "Email: ";
+  	  	String imageURL = "http://http://maeverooney.x10.mx/images/rest4.jpg";
+  	  	ImageView img=(ImageView)findViewById(R.id.restaurant_image);
   	  	TextView nameText=(TextView)findViewById(R.id.restaurant_name);
   	  	TextView addressText=(TextView)findViewById(R.id.restaurant_address);
   	  	TextView phoneText=(TextView)findViewById(R.id.restaurant_phone);
@@ -59,6 +64,8 @@ public class RestaurantDetailView extends ListActivity {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, RestaurantDetailView.this);
   	  	try {
 	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneRestaurant.php").get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -111,6 +118,12 @@ public class RestaurantDetailView extends ListActivity {
   	    			// TODO Auto-generated catch block
   	    			e.printStackTrace();
   	    		}
+  	    		try {
+  	    			imageURL = restaurantObject.getString("imageURL");
+  	    		} catch (JSONException e) {
+  	    			// TODO Auto-generated catch block
+  	    			e.printStackTrace();
+  	    		}
   	    	 }    	
         }
   	    // Parse address string to add line breaks
@@ -120,11 +133,15 @@ public class RestaurantDetailView extends ListActivity {
   	    addressText.setText(address);
   	    emailText.setText(email);
   	    phoneText.setText(phone);
+  	    Drawable drawable = LoadImageFromWebOperations(imageURL);
+  	    img.setImageDrawable(drawable);
            
         String response2 = null;
         TaskAsyncHttpPost request = new TaskAsyncHttpPost(nameValuePairs, RestaurantDetailView.this);
 	    try {
 			response2 = request.execute("http://maeverooney.x10.mx/getReviews.php").get();
+	  		String str = response2.replace(":null", ":\"0\"");
+	  		response2 = str;
 		} catch (InterruptedException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
@@ -188,7 +205,20 @@ public class RestaurantDetailView extends ListActivity {
 		});
     }
     
-    private RowModel getModel(int position) {
+    private Drawable LoadImageFromWebOperations(String string) {
+    	try{
+    		URL url = new URL(string);                     
+		    HttpURLConnection connection  = (HttpURLConnection) url.openConnection();
+		    InputStream is = connection.getInputStream();
+ 			Drawable d = Drawable.createFromStream(is, "src name");
+ 			return d;
+ 		}catch (Exception e) {
+ 			System.out.println("Exc="+e);
+ 			return null;
+ 		}
+	}
+
+	private RowModel getModel(int position) {
 		return (RowModel) (((RatingAdapter)getListAdapter()).getItem(position));
 	}
     

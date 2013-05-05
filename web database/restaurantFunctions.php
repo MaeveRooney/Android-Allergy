@@ -25,9 +25,9 @@ class restaurantFunctions {
     public function storeRestaurant($name, $email, $address, $GPSLatitude, $GPSLongitude, $phone, $wheat, $gluten, $dairy, $nut, $overall) {
         $insertString = "INSERT INTO restaurants(name, GPSLatitude, GPSLongitude, restaurantEmail,
         			address, phone, wheatRating, wheatNumVotes, glutenRating, glutenNumVotes, dairyRating, dairyNumVotes
-        			, nutRating, nutNumVotes, overallRating, overallNumVotes, numFavourites)";
+        			, nutRating, nutNumVotes, overallRating, overallNumVotes, numFavourites, imageURL)";
         $valuesString = " VALUES('$name', '$GPSLatitude','$GPSLongitude', '$email', '$address', '$phone', '$wheat', '1',
-        				'$gluten', '1', '$dairy', '1', '$nut', '1', '$overall', '1', '0')";
+        				'$gluten', '1', '$dairy', '1', '$nut', '1', '$overall', '1', '0','http://maeverooney.x10.mx/images/rest4.jpg')";
 
         $queryString = $insertString.$valuesString;
         $result = mysql_query($queryString);
@@ -45,29 +45,17 @@ class restaurantFunctions {
 
     public function addReviewToRestaurant($id, $wheat, $wheatNum, $gluten, $glutenNum, $dairy, $dairyNum, $nut, $nutNum, $overall, $overallNum){
     	$uid = (int)$id;
-    	$queryString="UPDATE restaurants SET";
-    	if ($wheat != "0.0"){
-         	$queryString.= " wheatRating='$wheat', wheatNumVotes='$wheatNum'";
-         }
-         if ($gluten != "0.0"){
-         	$queryString.= " glutenRating='$gluten', glutenNumVotes='$glutenNum'";
-         }
-         if ($dairy != "0.0"){
-         	$queryString.= " dairyRating='$dairy', dairyNumVotes='$dairyNum'";
-         }
-         if ($nut != "0.0"){
-         	$nutNumVotes = int($nutNum);
-         	$queryString.= " nutRating='$nut', nutNumVotes='$nutNum'";
-         }
-         if ($overall != "0.0"){
-         	$queryString.= " overallRating='$overall', overallNumVotes='$overallNum'";
-         }
-        $queryString .= "WHERE id='$uid'";
+    	$queryString="UPDATE restaurants SET wheatRating='$wheat', wheatNumVotes='$wheatNum',
+    				glutenRating='$gluten', glutenNumVotes='$glutenNum',
+    				dairyRating='$dairy', dairyNumVotes='$dairyNum',
+    				nutRating='$nut', nutNumVotes='$nutNum',
+    				overallRating='$overall', overallNumVotes='$overallNum'
+    				WHERE id='$uid'";
         $result = mysql_query($queryString);
         // check for successful store
         if ($result) {
             // get restaurant details
-            $result = mysql_query("SELECT * FROM restaurants WHERE id = '$id'");
+            $result = mysql_query("SELECT * FROM restaurants WHERE id = '$uid'");
             // return restaurant details
             return mysql_fetch_array($result);
         } else {

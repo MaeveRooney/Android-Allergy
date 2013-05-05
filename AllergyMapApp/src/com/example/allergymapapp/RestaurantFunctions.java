@@ -51,6 +51,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -91,6 +93,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -127,7 +131,9 @@ public class RestaurantFunctions {
         String response = null;
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
-  		response = httpRequest.execute(restaurantURL).get();
+	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -158,6 +164,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -189,6 +197,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -220,6 +230,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(restaurantURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -248,6 +260,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, mContext);
   	  	try {
 	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneRestaurant.php").get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -321,6 +335,8 @@ public class RestaurantFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, mContext);
   	  	try {
 	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneRestaurant.php").get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();

@@ -78,3 +78,19 @@
 [21-Mar-2013 18:21:24 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/maeveroo/public_html/DB_Connect.php on line 22
 [21-Mar-2013 18:28:46 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/maeveroo/public_html/DB_Connect.php on line 22
 [22-Mar-2013 00:35:54 America/New_York] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'maeveroo_Maeve'@'localhost' (using password: YES) in /home/maeveroo/public_html/selectAllRestaurants.php on line 2
+[22-Mar-2013 01:17:26 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[22-Mar-2013 02:49:17 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[22-Mar-2013 03:00:11 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[07-Apr-2013 16:50:42 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[08-Apr-2013 06:41:44 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[15-Apr-2013 22:47:28 America/New_York] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[03-May-2013 21:24:36 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[03-May-2013 21:25:52 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[03-May-2013 21:26:29 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[03-May-2013 21:26:31 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[03-May-2013 21:26:32 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[03-May-2013 21:27:43 America/New_York] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/maeveroo/public_html/getOneReview.php on line 21
+[04-May-2013 00:29:17 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[04-May-2013 00:35:19 America/New_York] PHP Fatal error:  Call to undefined function int() in /home/maeveroo/public_html/restaurantFunctions.php on line 59
+[04-May-2013 00:57:09 America/New_York] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126
+[04-May-2013 01:03:33 America/New_York] PHP Fatal error:  Call to undefined method userFunctions::changeUserDetails() in /home/maeveroo/public_html/userGetAndPost.php on line 126

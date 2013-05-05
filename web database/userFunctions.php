@@ -89,7 +89,30 @@ class userFunctions {
     }
 
     /**
-     * Get user by email and id
+     * Get user by username and password
+     */
+    public function getUserByUsernameAndPassword($username, $password) {
+        $result = mysql_query("SELECT * FROM users WHERE username = '$username'") or die(mysql_error());
+        // check for result
+        $no_of_rows = mysql_num_rows($result);
+        if ($no_of_rows > 0) {
+            $result = mysql_fetch_array($result);
+            $salt = $result['salt'];
+            $encrypted_password = $result['encrypted_password'];
+            $hash = $this->checkhashSSHA($salt, $password);
+            // check for password equality
+            if ($encrypted_password == $hash) {
+                // user authentication details are correct
+                return $result;
+            }
+        } else {
+            // user not found
+            return false;
+        }
+    }
+
+    /**
+     * Get user by id and password
      */
     public function getUserByIdAndPassword($id, $password) {
         $result = mysql_query("SELECT * FROM users WHERE id = '$id'") or die(mysql_error());

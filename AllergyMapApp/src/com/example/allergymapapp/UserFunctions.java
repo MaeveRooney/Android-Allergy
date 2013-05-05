@@ -42,6 +42,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(loginURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -78,6 +80,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(loginURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -120,6 +124,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(registerURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -159,6 +165,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(registerURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -193,6 +201,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(registerURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -226,6 +236,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(registerURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -256,6 +268,8 @@ public class UserFunctions {
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
   	  	try {
 	  		response = httpRequest.execute(registerURL).get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
@@ -290,6 +304,8 @@ public class UserFunctions {
 		  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(params, mContext);
 		  	try {
 		  		response = httpRequest.execute(loginURL).get();
+		  		String str = response.replace(":null", ":\"0\"");
+		  		response = str;
 			} catch (InterruptedException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();

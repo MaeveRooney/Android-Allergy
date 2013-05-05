@@ -32,6 +32,7 @@ while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $row_array['overallRating'] = $row['overallRating'];
     $row_array['overallNumVotes'] = $row['overallNumVotes'];
     $row_array['numFavourites'] = $row['numFavourites'];
+    $row_array['imageURL'] = $row['imageURL'];
 
     array_push($return_arr,$row_array);
 }

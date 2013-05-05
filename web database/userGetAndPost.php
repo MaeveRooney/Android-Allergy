@@ -28,7 +28,7 @@ if (isset($_POST['tag']) && $_POST['tag'] != '') {
         $username = $_POST['username'];
 
         // check for user
-        $user = $db->getUserByEmailAndPassword($email, $password);
+        $user = $db->getUserByUsernameAndPassword($username, $password);
         if ($user != false) {
             // user found
             // echo json with success = 1

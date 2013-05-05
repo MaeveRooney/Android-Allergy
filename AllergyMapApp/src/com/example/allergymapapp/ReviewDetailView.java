@@ -48,6 +48,8 @@ public class ReviewDetailView extends Activity{
   	  	TaskAsyncHttpPost httpRequest = new TaskAsyncHttpPost(nameValuePairs, ReviewDetailView.this);
   	  	try {
 	  		response = httpRequest.execute("http://maeverooney.x10.mx/getOneReview.php").get();
+	  		String str = response.replace(":null", ":\"0\"");
+	  		response = str;
   		} catch (InterruptedException e3) {
   			// TODO Auto-generated catch block
   			e3.printStackTrace();
